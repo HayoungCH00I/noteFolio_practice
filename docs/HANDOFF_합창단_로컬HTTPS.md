@@ -1,12 +1,12 @@
 # 인수인계 — 합창단 및 로컬 HTTPS 카메라 공유
 
-갱신일: **2026-11-18, Asia/Seoul**. 이번 갱신은 파일·Git 상태를 읽고 이 문서만 작성했다. 코드 수정, 인증서 설치·재발급, 서버 실행, 테스트·빌드 재실행은 하지 않았다. 기존 `docs/HANDOFF*.md`는 없었다.
+갱신일: **2026-11-18, Asia/Seoul**. 최초 인수인계 문서 작성은 읽기 점검과 문서 작성만 수행했다. 이후 같은 날 사용자의 추가 요청으로 폴더명을 `noteFolio_practice`로 변경하고 로컬 Git 및 GitHub 비공개 저장소를 연결했다. 폴더 변경 후 전체 117개 테스트와 빌드를 다시 확인했다. 웹 기능 코드나 인증서는 변경하지 않았고 개발 서버도 실행하지 않았다.
 
 ## 1. 현재 목표와 완료 조건
 
 Vite + vanilla TypeScript 실습 프로젝트의 **3주차 → 합창단**을 유지·개선하고, 같은 LAN의 다른 PC에서 HTTPS와 카메라로 이용할 수 있게 하는 작업이다. React/Vue 등 프레임워크를 도입하지 않는다.
 
-**현재 활성 구현 요청이나 재현 중인 버그는 없다.** 마지막으로 다른 PC에서 카메라가 안 보이고 “양손 추적을 준비하지 못했어요”가 표시되는 문제가 있었으나, 사용자가 **“음 잠만 해결됨”**이라고 알려 원인 추적을 종료했다. 정확히 어떤 조치로 해결됐는지는 확인하지 않았다. 이미 진행 중이던 오류 처리 보완은 완료하고 검증했다.
+**현재 재현 중인 웹 기능 버그는 없다.** 최근 추가 작업은 `noteFolio_practice`로 폴더명을 바꾸고 같은 이름의 GitHub 비공개 저장소에 연결하는 것이었다. 마지막으로 다른 PC에서 카메라가 안 보이고 “양손 추적을 준비하지 못했어요”가 표시되는 문제가 있었으나, 사용자가 **“음 잠만 해결됨”**이라고 알려 원인 추적을 종료했다. 정확히 어떤 조치로 해결됐는지는 확인하지 않았다. 이미 진행 중이던 오류 처리 보완은 완료하고 검증했다.
 
 기존 요구사항의 완료 기준:
 
@@ -20,15 +20,20 @@ Vite + vanilla TypeScript 실습 프로젝트의 **3주차 → 합창단**을 �
 
 ## 2. 작업 디렉터리와 Git 상태
 
-| 항목 | 2026-11-18 읽기 확인 결과 |
+| 항목 | 2026-11-18 Git 연결 작업 기준 |
 | --- | --- |
-| 실제 작업 디렉터리 | `/Users/choihayoung/Documents/notefolio/vs code` |
-| 대화 환경에 표시된 경로 | `/Users/choihayoung/Documents/노트폴리오 강의_바이브 코딩/vs code` — 현재 존재하지 않음 |
-| Git 저장소 | 실제 디렉터리와 상위 경로에 `.git` 저장소가 발견되지 않음 |
-| 브랜치 / 기준 커밋 | **확인 불가**. 브랜치명·커밋 해시를 추정해서 쓰지 말 것 |
-| 확인 명령 | `git status --short --branch`, `git rev-parse --show-toplevel --abbrev-ref HEAD --verify HEAD` 모두 `fatal: not a git repository` |
+| 실제 작업 디렉터리 | `/Users/choihayoung/Documents/notefolio/noteFolio_practice` |
+| 변경 전 폴더 | `/Users/choihayoung/Documents/notefolio/vs code` → 위 이름으로 이동 |
+| 대화 환경의 오래된 경로 | `/Users/choihayoung/Documents/노트폴리오 강의_바이브 코딩/vs code` — 존재하지 않음 |
+| 로컬 브랜치 | `main` |
+| 원격 저장소 | `https://github.com/HayoungCH00I/noteFolio_practice` — **비공개** |
+| origin | `https://github.com/HayoungCH00I/noteFolio_practice.git` |
+| 기준 커밋: 최초 프로젝트 스냅샷 | `5b7c4054ee736e54bab00557c7c04027cc62733d` |
+| 이후 변경 | README·인수인계·폴더 경로 정리는 후속 문서 커밋에 포함. 최종 HEAD는 `git rev-parse HEAD`로 확인 |
 
-도구를 실행할 때 실제 경로를 명시한다. Git 초기화·커밋·브랜치 생성은 요청받지 않았다. 이번 문서 갱신에서도 하지 않았다.
+처음에는 `.git`이 없었으나 사용자가 명시적으로 Git 연결을 요청하여 초기화했다. GitHub CLI를 설치하고 사용자가 브라우저 인증을 완료한 계정 `HayoungCH00I`에 저장소를 생성했다. 기존 전역 Git 작성자 설정을 유지했다. 인증 토큰은 문서나 저장소에 기록하지 않는다.
+
+새 폴더를 VS Code에서 다시 열어야 한다. 도구의 작업 경로도 반드시 새 경로로 지정한다. 실행 중이던 개발 서버가 이전 경로를 사용하고 있다면 사용자가 새 폴더에서 다시 실행해야 한다. 에이전트가 임의로 재시작하지 않는다. `package.json`의 npm 식별자 `vs-code`는 이번 폴더/원격 이름 변경 범위에 포함하지 않아 유지했다.
 
 ## 3. 프로젝트 구성과 주요 파일
 
@@ -101,14 +106,14 @@ Vite + vanilla TypeScript 실습 프로젝트의 **3주차 → 합창단**을 �
 
 ## 5. 커밋되지 않은 변경사항
 
-Git 저장소가 없어 **커밋 대비 diff나 미추적 파일 목록을 확정할 수 없다.** 아래는 대화에서 작업했고 현재 파일로 확인되는 주요 결과물이지, Git diff 목록은 아니다. 원본 상태로 일괄 복구하거나 Git에 올라갔다고 가정하지 않는다.
+Git 도입 전의 기능 변경과 Git 제외 규칙을 최초 스냅샷 `5b7c4054ee736e54bab00557c7c04027cc62733d`에 저장했다. 그보다 이전 상태에 대한 커밋 대비 diff는 없다. 아래는 주요 작업 결과물 목록이며 대기 중인 기능 수정 목록이 아니다. 새 대화에서는 `git status --short --branch`, `git diff`, `git log -3 --oneline`으로 실제 미커밋 변경과 원격 동기화 상태를 확인한다. 사용자 작업이 있으면 보존한다.
 
 - 통합 파일: `src/main.ts`, `src/pages.ts`, `src/style.css`, `src/fruit-tracker.ts`, `src/fruit-vision.ts`.
 - 합창단 구현: 위 표의 `src/choir*.ts`, `public/choir-sampler.js`, `public/music.mp3`, `public/vendor/soundtouch/`.
 - 설정·스크립트: `package.json`, `package-lock.json`, `vite.config.mjs`, `.gitignore`, `scripts/prepare-choir-audio.mjs`, `scripts/setup-dev-https.mjs`, `scripts/package-https-clients.mjs`.
 - 검사: `tests/choir-*.test.mjs` 9개 파일, `tests/dev-https.test.mjs`, `tests/https-clients.test.mjs`, 기존 공유 추적 관련 테스트.
-- 설명 문서: `PROJECT_NOTES.md`, `CHOIR.md`, `HTTPS_DEV.md`, 이번 인수인계 문서.
-- 로컬 생성물: `.certs/`와 ZIP, `dist/`, `node_modules/`. 키·인증서 내용을 인수인계 문서나 Git에 넣지 말 것.
+- 설명 문서: `README.md`, `PROJECT_NOTES.md`, `CHOIR.md`, `HTTPS_DEV.md`, 이번 인수인계 문서. 새 작업 경로와 GitHub 연결 상태를 반영했다.
+- 로컬 생성물: `.certs/`와 ZIP, `dist/`, `node_modules/`는 Git에서 제외한다. `.env*`, `.npmrc`, 개인키 파일도 제외한다. 첫 커밋 대상으로 비밀키·GitHub 토큰·AWS 키 패턴이 없는지 확인했다. 공개 음원·모델·WASM은 기능 재현을 위해 커밋했다(대상 약 44 MB, 95 MB 초과 파일 없음). 키·인증서 내용을 문서나 Git에 넣지 말 것.
 
 ## 6. 실패한 시도와 관찰 결과
 
@@ -119,7 +124,7 @@ Git 저장소가 없어 **커밋 대비 diff나 미추적 파일 목록을 확�
 
 ## 7. 검증 기록과 시점
 
-아래 기능 검증은 **2026-11-12의 이전 작업 세션**에서 실행했다. 최종 빌드 산출물의 수정 시각은 **2026-11-12 22:17 KST경**이며, 2026-11-18에는 읽기 확인만 했다. 일시적인 `/tmp` 테스트 로그는 현재 존재하지 않아 재개 시 로그 파일에 의존하지 않는다.
+기능 구현 당시 검증은 **2026-11-12**, 폴더 이름 변경 후 전체 재검증은 **2026-11-18**에 수행했다. 가장 최근 결과는 아래 2026-11-18 재검증을 기준으로 한다. `/tmp` 테스트 로그는 임시 파일이므로 새 대화에서 존재한다고 가정하지 않는다.
 
 | 실행 명령 / 확인 | 마지막 관찰 결과 |
 | --- | --- |
@@ -132,7 +137,11 @@ Git 저장소가 없어 **커밋 대비 diff나 미추적 파일 목록을 확�
 | Vite `isFileLoadingAllowed` 검사 | `.certs`의 키·인증서·메타데이터 접근 거부, 앱 소스 접근 허용 |
 | ZIP 내용·해시·권한, `bash -n`, `osacompile` | 공개 인증서+설치 파일 2개+안내만 포함, 비밀키 없음, Mac 실행 권한 유지, 셸/AppleScript 구문 통과. 설치 프로그램을 실행한 검증은 아님 |
 | `public` / `dist` 검사 | 인증서·비밀키 미포함 |
-| 2026-11-18 읽기 점검 | 실제 작업 경로, Git 없음, 기존 설명 문서와 구현 파일·음원·인증서 ZIP 존재 확인. **테스트/빌드/서버 재실행 안 함** |
+| 2026-11-18 최초 인수인계 점검 | 당시 실제 경로는 `vs code`, Git 없음. 문서만 작성했으며 이후 아래 Git 연결 요청이 추가됨 |
+| 2026-11-18 `node --test --test-reporter=tap tests/*.test.mjs > /tmp/notefolio-git-setup-tests.tap` | 새 `noteFolio_practice` 폴더에서 **117개 통과, 실패 0** |
+| 2026-11-18 `npm run build` | 새 폴더에서 **성공**. 기존 Three.js 청크 크기 경고만 남음. 서버 실행 없음 |
+| 2026-11-18 Git 준비 검사 | `main` 초기 커밋 생성, 비밀 파일/생성물 제외와 민감 패턴 검사 완료, origin 등록 |
+| 2026-11-18 `gh repo view ... --json nameWithOwner,isPrivate,url` | `HayoungCH00I/noteFolio_practice`, `isPrivate: true` 확인 |
 
 ## 8. 미완료 검증·가정·다음 단계
 
@@ -145,7 +154,7 @@ Git 저장소가 없어 **커밋 대비 diff나 미추적 파일 목록을 확�
 
 재개 순서:
 
-1. 이 문서와 `PROJECT_NOTES.md`를 읽고 **실제 디렉터리**에서 파일/Git 상태를 확인한다. 새 대화의 추가 지시가 없다면 이미 해결된 카메라 문제를 임의로 다시 파고들지 않는다.
+1. 이 문서와 `PROJECT_NOTES.md`를 읽고 **실제 디렉터리** `/Users/choihayoung/Documents/notefolio/noteFolio_practice`에서 파일/Git 상태를 확인한다. 새 대화의 추가 지시가 없다면 이미 해결된 카메라 문제를 임의로 다시 파고들지 않는다.
 2. 합창단 변경은 `src/choir.ts`와 요청 분야의 모듈부터 확인한다. 다른 주차의 장면·공유 `FruitTracker` 호출부에 영향이 있는지 함께 본다.
 3. 새 코드 변경이 승인된 작업에서 필요한 테스트를 실행하고, 완료 시 `npm test`와 `npm run build`로 확인한다. **문서만 요청받은 경우에는 실행하지 않는다.** 빌드는 `public/vendor/soundtouch`와 `dist`를 갱신한다.
 4. 실물 검증이 필요하면 사용자 승인 범위 안에서 개발 서버를 다룬다. **사용자가 별도로 요청하기 전까지 `npm run dev`, `npm run company`, preview를 직접 실행하거나 기존 서버를 재시작하지 않는다.**
