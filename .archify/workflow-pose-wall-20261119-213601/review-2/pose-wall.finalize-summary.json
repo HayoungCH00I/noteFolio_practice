@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "workflow",
+  "quality": "showcase",
+  "specification": {
+    "path": "/Users/choihayoung/Documents/notefolio/noteFolio_practice/.archify/workflow-pose-wall-20261119-213601/candidate.json",
+    "sha256": "59c99c66957b5b722e6136d1e7610d354f1d2dc12bd1aa739269082a1a8e6b23",
+    "bytes": 2813
+  },
+  "artifact": {
+    "path": "/Users/choihayoung/Documents/notefolio/noteFolio_practice/.archify/workflow-pose-wall-20261119-213601/pose-wall.html",
+    "sha256": "b3330a13d17b0a76d04b1a46c9e69d2a87d2b4e364d055d3dfba4028fb4f193e",
+    "bytes": 841045
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "/Users/choihayoung/Documents/notefolio/noteFolio_practice/.archify/workflow-pose-wall-20261119-213601/review-2/pose-wall.finalize.json",
+    "summaryReceipt": "/Users/choihayoung/Documents/notefolio/noteFolio_practice/.archify/workflow-pose-wall-20261119-213601/review-2/pose-wall.finalize-summary.json",
+    "browserCheckReceipt": "/Users/choihayoung/Documents/notefolio/noteFolio_practice/.archify/workflow-pose-wall-20261119-213601/review-2/pose-wall.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-11-19T12:36:01.598Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 4097,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  }
+}

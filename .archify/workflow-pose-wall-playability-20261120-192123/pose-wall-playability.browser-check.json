@@ -1,0 +1,1069 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "browser-check",
+  "evidenceKind": "automated-browser",
+  "status": "pass",
+  "visualReview": "not-requested",
+  "provenance": "current",
+  "deliveryReceiptId": "ff06109c-f07d-4712-9702-6383b1729215",
+  "artifact": {
+    "path": "/Users/choihayoung/Documents/notefolio/noteFolio_practice/.archify/workflow-pose-wall-playability-20261120-192123/pose-wall-playability.html",
+    "sha256": "46480debbf30c14945daf98c4ebf082137f34ee68a7348b15a3c53dc54054ee7",
+    "bytes": 847712
+  },
+  "state": {
+    "detail": "read",
+    "motion": "still"
+  },
+  "chrome": {
+    "status": "available",
+    "executable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+  },
+  "diagnostics": [],
+  "containment": {
+    "status": "pass",
+    "policy": "fit-or-reader-declared-readable-vertical-scroll",
+    "viewports": [
+      {
+        "width": 1440,
+        "height": 900,
+        "theme": "light",
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "scrollWidth": 1440,
+        "scrollHeight": 900,
+        "overflowX": false,
+        "overflowY": false,
+        "verticalScrollAccepted": false,
+        "overflowDisposition": "contained",
+        "readerLayout": "adaptive",
+        "readerOverflow": null,
+        "readerFit": null,
+        "ok": true,
+        "readerWidth": 1376,
+        "diagramWidth": 1346,
+        "pageComposition": {
+          "bodyPaddingPx": 12,
+          "headerPx": 52,
+          "diagramChromePx": 78,
+          "svgPx": 568,
+          "cardsPx": 0,
+          "viewBoxHeight": 404
+        },
+        "viewBoxWidth": 958,
+        "workflowLanes": [
+          {
+            "frameId": "lane-0",
+            "heightPx": 146,
+            "nodeCount": 6,
+            "nodeIds": [
+              "mode",
+              "frame",
+              "demo",
+              "wall",
+              "judge",
+              "next"
+            ],
+            "nodeSpanPx": 73,
+            "spaceAboveNodesPx": 58,
+            "spaceBelowNodesPx": 15
+          },
+          {
+            "frameId": "lane-1",
+            "heightPx": 146,
+            "nodeCount": 3,
+            "nodeIds": [
+              "adjust",
+              "retry",
+              "miss"
+            ],
+            "nodeSpanPx": 73,
+            "spaceAboveNodesPx": 58,
+            "spaceBelowNodesPx": 15
+          }
+        ],
+        "minimumProjectedNodeTextPx": 6.3,
+        "minimumProjectedNonEdgeTextPx": 6.3,
+        "minimumProjectedEdgeTextPx": 8,
+        "minimumProjectedNodeText": "1인 또는 2인 모드 선택",
+        "minimumProjectedNodeTextDetail": "context",
+        "minimumProjectedNodeTextOwner": {
+          "kind": "node",
+          "id": "mode"
+        },
+        "minimumRequiredNodeTextPx": 6,
+        "readabilityOk": true,
+        "hasLegend": true,
+        "hasNavigationDock": true,
+        "legendDockIntersectionArea": 0,
+        "dockStageIntersectionArea": 0,
+        "dockStageGap": 10,
+        "requiredDockStageGap": 10,
+        "viewerChromeStageOk": true,
+        "viewerChromeReserve": 54,
+        "viewerChromeActive": true,
+        "viewerChromeOk": true,
+        "resolvedTheme": "light"
+      },
+      {
+        "width": 1600,
+        "height": 1000,
+        "theme": "light",
+        "innerWidth": 1600,
+        "innerHeight": 1000,
+        "scrollWidth": 1600,
+        "scrollHeight": 1000,
+        "overflowX": false,
+        "overflowY": false,
+        "verticalScrollAccepted": false,
+        "overflowDisposition": "contained",
+        "readerLayout": "adaptive",
+        "readerOverflow": null,
+        "readerFit": null,
+        "ok": true,
+        "readerWidth": 1536,
+        "diagramWidth": 1506,
+        "pageComposition": {
+          "bodyPaddingPx": 64,
+          "headerPx": 60,
+          "diagramChromePx": 84,
+          "svgPx": 635,
+          "cardsPx": 0,
+          "viewBoxHeight": 404
+        },
+        "viewBoxWidth": 958,
+        "workflowLanes": [
+          {
+            "frameId": "lane-0",
+            "heightPx": 163,
+            "nodeCount": 6,
+            "nodeIds": [
+              "mode",
+              "frame",
+              "demo",
+              "wall",
+              "judge",
+              "next"
+            ],
+            "nodeSpanPx": 82,
+            "spaceAboveNodesPx": 64,
+            "spaceBelowNodesPx": 17
+          },
+          {
+            "frameId": "lane-1",
+            "heightPx": 163,
+            "nodeCount": 3,
+            "nodeIds": [
+              "adjust",
+              "retry",
+              "miss"
+            ],
+            "nodeSpanPx": 82,
+            "spaceAboveNodesPx": 64,
+            "spaceBelowNodesPx": 17
+          }
+        ],
+        "minimumProjectedNodeTextPx": 6.3,
+        "minimumProjectedNonEdgeTextPx": 6.3,
+        "minimumProjectedEdgeTextPx": 8,
+        "minimumProjectedNodeText": "1인 또는 2인 모드 선택",
+        "minimumProjectedNodeTextDetail": "context",
+        "minimumProjectedNodeTextOwner": {
+          "kind": "node",
+          "id": "mode"
+        },
+        "minimumRequiredNodeTextPx": 6,
+        "readabilityOk": true,
+        "hasLegend": true,
+        "hasNavigationDock": true,
+        "legendDockIntersectionArea": 0,
+        "dockStageIntersectionArea": 0,
+        "dockStageGap": 10,
+        "requiredDockStageGap": 10,
+        "viewerChromeStageOk": true,
+        "viewerChromeReserve": 54,
+        "viewerChromeActive": true,
+        "viewerChromeOk": true,
+        "resolvedTheme": "light"
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "theme": "light",
+        "innerWidth": 1920,
+        "innerHeight": 1080,
+        "scrollWidth": 1920,
+        "scrollHeight": 1080,
+        "overflowX": false,
+        "overflowY": false,
+        "verticalScrollAccepted": false,
+        "overflowDisposition": "contained",
+        "readerLayout": "adaptive",
+        "readerOverflow": null,
+        "readerFit": null,
+        "ok": true,
+        "readerWidth": 1856,
+        "diagramWidth": 1826,
+        "pageComposition": {
+          "bodyPaddingPx": 64,
+          "headerPx": 60,
+          "diagramChromePx": 84,
+          "svgPx": 770,
+          "cardsPx": 0,
+          "viewBoxHeight": 404
+        },
+        "viewBoxWidth": 958,
+        "workflowLanes": [
+          {
+            "frameId": "lane-0",
+            "heightPx": 198,
+            "nodeCount": 6,
+            "nodeIds": [
+              "mode",
+              "frame",
+              "demo",
+              "wall",
+              "judge",
+              "next"
+            ],
+            "nodeSpanPx": 99,
+            "spaceAboveNodesPx": 78,
+            "spaceBelowNodesPx": 21
+          },
+          {
+            "frameId": "lane-1",
+            "heightPx": 198,
+            "nodeCount": 3,
+            "nodeIds": [
+              "adjust",
+              "retry",
+              "miss"
+            ],
+            "nodeSpanPx": 99,
+            "spaceAboveNodesPx": 78,
+            "spaceBelowNodesPx": 21
+          }
+        ],
+        "minimumProjectedNodeTextPx": 6.3,
+        "minimumProjectedNonEdgeTextPx": 6.3,
+        "minimumProjectedEdgeTextPx": 8,
+        "minimumProjectedNodeText": "1인 또는 2인 모드 선택",
+        "minimumProjectedNodeTextDetail": "context",
+        "minimumProjectedNodeTextOwner": {
+          "kind": "node",
+          "id": "mode"
+        },
+        "minimumRequiredNodeTextPx": 6,
+        "readabilityOk": true,
+        "hasLegend": true,
+        "hasNavigationDock": true,
+        "legendDockIntersectionArea": 0,
+        "dockStageIntersectionArea": 0,
+        "dockStageGap": 10,
+        "requiredDockStageGap": 10,
+        "viewerChromeStageOk": true,
+        "viewerChromeReserve": 54,
+        "viewerChromeActive": true,
+        "viewerChromeOk": true,
+        "resolvedTheme": "light"
+      },
+      {
+        "width": 2048,
+        "height": 1320,
+        "theme": "light",
+        "innerWidth": 2048,
+        "innerHeight": 1320,
+        "scrollWidth": 2048,
+        "scrollHeight": 1320,
+        "overflowX": false,
+        "overflowY": false,
+        "verticalScrollAccepted": false,
+        "overflowDisposition": "contained",
+        "readerLayout": "adaptive",
+        "readerOverflow": null,
+        "readerFit": null,
+        "ok": true,
+        "readerWidth": 1920,
+        "diagramWidth": 1870,
+        "pageComposition": {
+          "bodyPaddingPx": 64,
+          "headerPx": 68,
+          "diagramChromePx": 94,
+          "svgPx": 789,
+          "cardsPx": 0,
+          "viewBoxHeight": 404
+        },
+        "viewBoxWidth": 958,
+        "workflowLanes": [
+          {
+            "frameId": "lane-0",
+            "heightPx": 203,
+            "nodeCount": 6,
+            "nodeIds": [
+              "mode",
+              "frame",
+              "demo",
+              "wall",
+              "judge",
+              "next"
+            ],
+            "nodeSpanPx": 102,
+            "spaceAboveNodesPx": 80,
+            "spaceBelowNodesPx": 21
+          },
+          {
+            "frameId": "lane-1",
+            "heightPx": 203,
+            "nodeCount": 3,
+            "nodeIds": [
+              "adjust",
+              "retry",
+              "miss"
+            ],
+            "nodeSpanPx": 102,
+            "spaceAboveNodesPx": 80,
+            "spaceBelowNodesPx": 21
+          }
+        ],
+        "minimumProjectedNodeTextPx": 6.3,
+        "minimumProjectedNonEdgeTextPx": 6.3,
+        "minimumProjectedEdgeTextPx": 8,
+        "minimumProjectedNodeText": "1인 또는 2인 모드 선택",
+        "minimumProjectedNodeTextDetail": "context",
+        "minimumProjectedNodeTextOwner": {
+          "kind": "node",
+          "id": "mode"
+        },
+        "minimumRequiredNodeTextPx": 6,
+        "readabilityOk": true,
+        "hasLegend": true,
+        "hasNavigationDock": true,
+        "legendDockIntersectionArea": 0,
+        "dockStageIntersectionArea": 0,
+        "dockStageGap": 10,
+        "requiredDockStageGap": 10,
+        "viewerChromeStageOk": true,
+        "viewerChromeReserve": 44,
+        "viewerChromeActive": true,
+        "viewerChromeOk": true,
+        "resolvedTheme": "light"
+      }
+    ]
+  },
+  "themeStates": {
+    "status": "pass",
+    "viewports": [
+      {
+        "width": 1440,
+        "height": 900,
+        "requestedTheme": "light",
+        "resolvedTheme": "light",
+        "ok": true
+      },
+      {
+        "width": 1600,
+        "height": 1000,
+        "requestedTheme": "light",
+        "resolvedTheme": "light",
+        "ok": true
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "requestedTheme": "light",
+        "resolvedTheme": "light",
+        "ok": true
+      },
+      {
+        "width": 2048,
+        "height": 1320,
+        "requestedTheme": "light",
+        "resolvedTheme": "light",
+        "ok": true
+      },
+      {
+        "width": 1440,
+        "height": 900,
+        "requestedTheme": "dark",
+        "resolvedTheme": "dark",
+        "ok": true
+      },
+      {
+        "width": 2048,
+        "height": 1320,
+        "requestedTheme": "dark",
+        "resolvedTheme": "dark",
+        "ok": true
+      }
+    ]
+  },
+  "readability": {
+    "status": "pass",
+    "minimumProjectedNodeTextPx": 6,
+    "viewports": [
+      {
+        "width": 1440,
+        "height": 900,
+        "theme": "light",
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "scrollWidth": 1440,
+        "scrollHeight": 900,
+        "overflowX": false,
+        "overflowY": false,
+        "verticalScrollAccepted": false,
+        "overflowDisposition": "contained",
+        "readerLayout": "adaptive",
+        "readerOverflow": null,
+        "readerFit": null,
+        "ok": true,
+        "readerWidth": 1376,
+        "diagramWidth": 1346,
+        "pageComposition": {
+          "bodyPaddingPx": 12,
+          "headerPx": 52,
+          "diagramChromePx": 78,
+          "svgPx": 568,
+          "cardsPx": 0,
+          "viewBoxHeight": 404
+        },
+        "viewBoxWidth": 958,
+        "workflowLanes": [
+          {
+            "frameId": "lane-0",
+            "heightPx": 146,
+            "nodeCount": 6,
+            "nodeIds": [
+              "mode",
+              "frame",
+              "demo",
+              "wall",
+              "judge",
+              "next"
+            ],
+            "nodeSpanPx": 73,
+            "spaceAboveNodesPx": 58,
+            "spaceBelowNodesPx": 15
+          },
+          {
+            "frameId": "lane-1",
+            "heightPx": 146,
+            "nodeCount": 3,
+            "nodeIds": [
+              "adjust",
+              "retry",
+              "miss"
+            ],
+            "nodeSpanPx": 73,
+            "spaceAboveNodesPx": 58,
+            "spaceBelowNodesPx": 15
+          }
+        ],
+        "minimumProjectedNodeTextPx": 6.3,
+        "minimumProjectedNonEdgeTextPx": 6.3,
+        "minimumProjectedEdgeTextPx": 8,
+        "minimumProjectedNodeText": "1인 또는 2인 모드 선택",
+        "minimumProjectedNodeTextDetail": "context",
+        "minimumProjectedNodeTextOwner": {
+          "kind": "node",
+          "id": "mode"
+        },
+        "minimumRequiredNodeTextPx": 6,
+        "readabilityOk": true,
+        "hasLegend": true,
+        "hasNavigationDock": true,
+        "legendDockIntersectionArea": 0,
+        "dockStageIntersectionArea": 0,
+        "dockStageGap": 10,
+        "requiredDockStageGap": 10,
+        "viewerChromeStageOk": true,
+        "viewerChromeReserve": 54,
+        "viewerChromeActive": true,
+        "viewerChromeOk": true,
+        "resolvedTheme": "light"
+      },
+      {
+        "width": 1600,
+        "height": 1000,
+        "theme": "light",
+        "innerWidth": 1600,
+        "innerHeight": 1000,
+        "scrollWidth": 1600,
+        "scrollHeight": 1000,
+        "overflowX": false,
+        "overflowY": false,
+        "verticalScrollAccepted": false,
+        "overflowDisposition": "contained",
+        "readerLayout": "adaptive",
+        "readerOverflow": null,
+        "readerFit": null,
+        "ok": true,
+        "readerWidth": 1536,
+        "diagramWidth": 1506,
+        "pageComposition": {
+          "bodyPaddingPx": 64,
+          "headerPx": 60,
+          "diagramChromePx": 84,
+          "svgPx": 635,
+          "cardsPx": 0,
+          "viewBoxHeight": 404
+        },
+        "viewBoxWidth": 958,
+        "workflowLanes": [
+          {
+            "frameId": "lane-0",
+            "heightPx": 163,
+            "nodeCount": 6,
+            "nodeIds": [
+              "mode",
+              "frame",
+              "demo",
+              "wall",
+              "judge",
+              "next"
+            ],
+            "nodeSpanPx": 82,
+            "spaceAboveNodesPx": 64,
+            "spaceBelowNodesPx": 17
+          },
+          {
+            "frameId": "lane-1",
+            "heightPx": 163,
+            "nodeCount": 3,
+            "nodeIds": [
+              "adjust",
+              "retry",
+              "miss"
+            ],
+            "nodeSpanPx": 82,
+            "spaceAboveNodesPx": 64,
+            "spaceBelowNodesPx": 17
+          }
+        ],
+        "minimumProjectedNodeTextPx": 6.3,
+        "minimumProjectedNonEdgeTextPx": 6.3,
+        "minimumProjectedEdgeTextPx": 8,
+        "minimumProjectedNodeText": "1인 또는 2인 모드 선택",
+        "minimumProjectedNodeTextDetail": "context",
+        "minimumProjectedNodeTextOwner": {
+          "kind": "node",
+          "id": "mode"
+        },
+        "minimumRequiredNodeTextPx": 6,
+        "readabilityOk": true,
+        "hasLegend": true,
+        "hasNavigationDock": true,
+        "legendDockIntersectionArea": 0,
+        "dockStageIntersectionArea": 0,
+        "dockStageGap": 10,
+        "requiredDockStageGap": 10,
+        "viewerChromeStageOk": true,
+        "viewerChromeReserve": 54,
+        "viewerChromeActive": true,
+        "viewerChromeOk": true,
+        "resolvedTheme": "light"
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "theme": "light",
+        "innerWidth": 1920,
+        "innerHeight": 1080,
+        "scrollWidth": 1920,
+        "scrollHeight": 1080,
+        "overflowX": false,
+        "overflowY": false,
+        "verticalScrollAccepted": false,
+        "overflowDisposition": "contained",
+        "readerLayout": "adaptive",
+        "readerOverflow": null,
+        "readerFit": null,
+        "ok": true,
+        "readerWidth": 1856,
+        "diagramWidth": 1826,
+        "pageComposition": {
+          "bodyPaddingPx": 64,
+          "headerPx": 60,
+          "diagramChromePx": 84,
+          "svgPx": 770,
+          "cardsPx": 0,
+          "viewBoxHeight": 404
+        },
+        "viewBoxWidth": 958,
+        "workflowLanes": [
+          {
+            "frameId": "lane-0",
+            "heightPx": 198,
+            "nodeCount": 6,
+            "nodeIds": [
+              "mode",
+              "frame",
+              "demo",
+              "wall",
+              "judge",
+              "next"
+            ],
+            "nodeSpanPx": 99,
+            "spaceAboveNodesPx": 78,
+            "spaceBelowNodesPx": 21
+          },
+          {
+            "frameId": "lane-1",
+            "heightPx": 198,
+            "nodeCount": 3,
+            "nodeIds": [
+              "adjust",
+              "retry",
+              "miss"
+            ],
+            "nodeSpanPx": 99,
+            "spaceAboveNodesPx": 78,
+            "spaceBelowNodesPx": 21
+          }
+        ],
+        "minimumProjectedNodeTextPx": 6.3,
+        "minimumProjectedNonEdgeTextPx": 6.3,
+        "minimumProjectedEdgeTextPx": 8,
+        "minimumProjectedNodeText": "1인 또는 2인 모드 선택",
+        "minimumProjectedNodeTextDetail": "context",
+        "minimumProjectedNodeTextOwner": {
+          "kind": "node",
+          "id": "mode"
+        },
+        "minimumRequiredNodeTextPx": 6,
+        "readabilityOk": true,
+        "hasLegend": true,
+        "hasNavigationDock": true,
+        "legendDockIntersectionArea": 0,
+        "dockStageIntersectionArea": 0,
+        "dockStageGap": 10,
+        "requiredDockStageGap": 10,
+        "viewerChromeStageOk": true,
+        "viewerChromeReserve": 54,
+        "viewerChromeActive": true,
+        "viewerChromeOk": true,
+        "resolvedTheme": "light"
+      },
+      {
+        "width": 2048,
+        "height": 1320,
+        "theme": "light",
+        "innerWidth": 2048,
+        "innerHeight": 1320,
+        "scrollWidth": 2048,
+        "scrollHeight": 1320,
+        "overflowX": false,
+        "overflowY": false,
+        "verticalScrollAccepted": false,
+        "overflowDisposition": "contained",
+        "readerLayout": "adaptive",
+        "readerOverflow": null,
+        "readerFit": null,
+        "ok": true,
+        "readerWidth": 1920,
+        "diagramWidth": 1870,
+        "pageComposition": {
+          "bodyPaddingPx": 64,
+          "headerPx": 68,
+          "diagramChromePx": 94,
+          "svgPx": 789,
+          "cardsPx": 0,
+          "viewBoxHeight": 404
+        },
+        "viewBoxWidth": 958,
+        "workflowLanes": [
+          {
+            "frameId": "lane-0",
+            "heightPx": 203,
+            "nodeCount": 6,
+            "nodeIds": [
+              "mode",
+              "frame",
+              "demo",
+              "wall",
+              "judge",
+              "next"
+            ],
+            "nodeSpanPx": 102,
+            "spaceAboveNodesPx": 80,
+            "spaceBelowNodesPx": 21
+          },
+          {
+            "frameId": "lane-1",
+            "heightPx": 203,
+            "nodeCount": 3,
+            "nodeIds": [
+              "adjust",
+              "retry",
+              "miss"
+            ],
+            "nodeSpanPx": 102,
+            "spaceAboveNodesPx": 80,
+            "spaceBelowNodesPx": 21
+          }
+        ],
+        "minimumProjectedNodeTextPx": 6.3,
+        "minimumProjectedNonEdgeTextPx": 6.3,
+        "minimumProjectedEdgeTextPx": 8,
+        "minimumProjectedNodeText": "1인 또는 2인 모드 선택",
+        "minimumProjectedNodeTextDetail": "context",
+        "minimumProjectedNodeTextOwner": {
+          "kind": "node",
+          "id": "mode"
+        },
+        "minimumRequiredNodeTextPx": 6,
+        "readabilityOk": true,
+        "hasLegend": true,
+        "hasNavigationDock": true,
+        "legendDockIntersectionArea": 0,
+        "dockStageIntersectionArea": 0,
+        "dockStageGap": 10,
+        "requiredDockStageGap": 10,
+        "viewerChromeStageOk": true,
+        "viewerChromeReserve": 44,
+        "viewerChromeActive": true,
+        "viewerChromeOk": true,
+        "resolvedTheme": "light"
+      }
+    ]
+  },
+  "viewerChrome": {
+    "status": "pass",
+    "viewports": [
+      {
+        "width": 1440,
+        "height": 900,
+        "theme": "light",
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "scrollWidth": 1440,
+        "scrollHeight": 900,
+        "overflowX": false,
+        "overflowY": false,
+        "verticalScrollAccepted": false,
+        "overflowDisposition": "contained",
+        "readerLayout": "adaptive",
+        "readerOverflow": null,
+        "readerFit": null,
+        "ok": true,
+        "readerWidth": 1376,
+        "diagramWidth": 1346,
+        "pageComposition": {
+          "bodyPaddingPx": 12,
+          "headerPx": 52,
+          "diagramChromePx": 78,
+          "svgPx": 568,
+          "cardsPx": 0,
+          "viewBoxHeight": 404
+        },
+        "viewBoxWidth": 958,
+        "workflowLanes": [
+          {
+            "frameId": "lane-0",
+            "heightPx": 146,
+            "nodeCount": 6,
+            "nodeIds": [
+              "mode",
+              "frame",
+              "demo",
+              "wall",
+              "judge",
+              "next"
+            ],
+            "nodeSpanPx": 73,
+            "spaceAboveNodesPx": 58,
+            "spaceBelowNodesPx": 15
+          },
+          {
+            "frameId": "lane-1",
+            "heightPx": 146,
+            "nodeCount": 3,
+            "nodeIds": [
+              "adjust",
+              "retry",
+              "miss"
+            ],
+            "nodeSpanPx": 73,
+            "spaceAboveNodesPx": 58,
+            "spaceBelowNodesPx": 15
+          }
+        ],
+        "minimumProjectedNodeTextPx": 6.3,
+        "minimumProjectedNonEdgeTextPx": 6.3,
+        "minimumProjectedEdgeTextPx": 8,
+        "minimumProjectedNodeText": "1인 또는 2인 모드 선택",
+        "minimumProjectedNodeTextDetail": "context",
+        "minimumProjectedNodeTextOwner": {
+          "kind": "node",
+          "id": "mode"
+        },
+        "minimumRequiredNodeTextPx": 6,
+        "readabilityOk": true,
+        "hasLegend": true,
+        "hasNavigationDock": true,
+        "legendDockIntersectionArea": 0,
+        "dockStageIntersectionArea": 0,
+        "dockStageGap": 10,
+        "requiredDockStageGap": 10,
+        "viewerChromeStageOk": true,
+        "viewerChromeReserve": 54,
+        "viewerChromeActive": true,
+        "viewerChromeOk": true,
+        "resolvedTheme": "light"
+      },
+      {
+        "width": 1600,
+        "height": 1000,
+        "theme": "light",
+        "innerWidth": 1600,
+        "innerHeight": 1000,
+        "scrollWidth": 1600,
+        "scrollHeight": 1000,
+        "overflowX": false,
+        "overflowY": false,
+        "verticalScrollAccepted": false,
+        "overflowDisposition": "contained",
+        "readerLayout": "adaptive",
+        "readerOverflow": null,
+        "readerFit": null,
+        "ok": true,
+        "readerWidth": 1536,
+        "diagramWidth": 1506,
+        "pageComposition": {
+          "bodyPaddingPx": 64,
+          "headerPx": 60,
+          "diagramChromePx": 84,
+          "svgPx": 635,
+          "cardsPx": 0,
+          "viewBoxHeight": 404
+        },
+        "viewBoxWidth": 958,
+        "workflowLanes": [
+          {
+            "frameId": "lane-0",
+            "heightPx": 163,
+            "nodeCount": 6,
+            "nodeIds": [
+              "mode",
+              "frame",
+              "demo",
+              "wall",
+              "judge",
+              "next"
+            ],
+            "nodeSpanPx": 82,
+            "spaceAboveNodesPx": 64,
+            "spaceBelowNodesPx": 17
+          },
+          {
+            "frameId": "lane-1",
+            "heightPx": 163,
+            "nodeCount": 3,
+            "nodeIds": [
+              "adjust",
+              "retry",
+              "miss"
+            ],
+            "nodeSpanPx": 82,
+            "spaceAboveNodesPx": 64,
+            "spaceBelowNodesPx": 17
+          }
+        ],
+        "minimumProjectedNodeTextPx": 6.3,
+        "minimumProjectedNonEdgeTextPx": 6.3,
+        "minimumProjectedEdgeTextPx": 8,
+        "minimumProjectedNodeText": "1인 또는 2인 모드 선택",
+        "minimumProjectedNodeTextDetail": "context",
+        "minimumProjectedNodeTextOwner": {
+          "kind": "node",
+          "id": "mode"
+        },
+        "minimumRequiredNodeTextPx": 6,
+        "readabilityOk": true,
+        "hasLegend": true,
+        "hasNavigationDock": true,
+        "legendDockIntersectionArea": 0,
+        "dockStageIntersectionArea": 0,
+        "dockStageGap": 10,
+        "requiredDockStageGap": 10,
+        "viewerChromeStageOk": true,
+        "viewerChromeReserve": 54,
+        "viewerChromeActive": true,
+        "viewerChromeOk": true,
+        "resolvedTheme": "light"
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "theme": "light",
+        "innerWidth": 1920,
+        "innerHeight": 1080,
+        "scrollWidth": 1920,
+        "scrollHeight": 1080,
+        "overflowX": false,
+        "overflowY": false,
+        "verticalScrollAccepted": false,
+        "overflowDisposition": "contained",
+        "readerLayout": "adaptive",
+        "readerOverflow": null,
+        "readerFit": null,
+        "ok": true,
+        "readerWidth": 1856,
+        "diagramWidth": 1826,
+        "pageComposition": {
+          "bodyPaddingPx": 64,
+          "headerPx": 60,
+          "diagramChromePx": 84,
+          "svgPx": 770,
+          "cardsPx": 0,
+          "viewBoxHeight": 404
+        },
+        "viewBoxWidth": 958,
+        "workflowLanes": [
+          {
+            "frameId": "lane-0",
+            "heightPx": 198,
+            "nodeCount": 6,
+            "nodeIds": [
+              "mode",
+              "frame",
+              "demo",
+              "wall",
+              "judge",
+              "next"
+            ],
+            "nodeSpanPx": 99,
+            "spaceAboveNodesPx": 78,
+            "spaceBelowNodesPx": 21
+          },
+          {
+            "frameId": "lane-1",
+            "heightPx": 198,
+            "nodeCount": 3,
+            "nodeIds": [
+              "adjust",
+              "retry",
+              "miss"
+            ],
+            "nodeSpanPx": 99,
+            "spaceAboveNodesPx": 78,
+            "spaceBelowNodesPx": 21
+          }
+        ],
+        "minimumProjectedNodeTextPx": 6.3,
+        "minimumProjectedNonEdgeTextPx": 6.3,
+        "minimumProjectedEdgeTextPx": 8,
+        "minimumProjectedNodeText": "1인 또는 2인 모드 선택",
+        "minimumProjectedNodeTextDetail": "context",
+        "minimumProjectedNodeTextOwner": {
+          "kind": "node",
+          "id": "mode"
+        },
+        "minimumRequiredNodeTextPx": 6,
+        "readabilityOk": true,
+        "hasLegend": true,
+        "hasNavigationDock": true,
+        "legendDockIntersectionArea": 0,
+        "dockStageIntersectionArea": 0,
+        "dockStageGap": 10,
+        "requiredDockStageGap": 10,
+        "viewerChromeStageOk": true,
+        "viewerChromeReserve": 54,
+        "viewerChromeActive": true,
+        "viewerChromeOk": true,
+        "resolvedTheme": "light"
+      },
+      {
+        "width": 2048,
+        "height": 1320,
+        "theme": "light",
+        "innerWidth": 2048,
+        "innerHeight": 1320,
+        "scrollWidth": 2048,
+        "scrollHeight": 1320,
+        "overflowX": false,
+        "overflowY": false,
+        "verticalScrollAccepted": false,
+        "overflowDisposition": "contained",
+        "readerLayout": "adaptive",
+        "readerOverflow": null,
+        "readerFit": null,
+        "ok": true,
+        "readerWidth": 1920,
+        "diagramWidth": 1870,
+        "pageComposition": {
+          "bodyPaddingPx": 64,
+          "headerPx": 68,
+          "diagramChromePx": 94,
+          "svgPx": 789,
+          "cardsPx": 0,
+          "viewBoxHeight": 404
+        },
+        "viewBoxWidth": 958,
+        "workflowLanes": [
+          {
+            "frameId": "lane-0",
+            "heightPx": 203,
+            "nodeCount": 6,
+            "nodeIds": [
+              "mode",
+              "frame",
+              "demo",
+              "wall",
+              "judge",
+              "next"
+            ],
+            "nodeSpanPx": 102,
+            "spaceAboveNodesPx": 80,
+            "spaceBelowNodesPx": 21
+          },
+          {
+            "frameId": "lane-1",
+            "heightPx": 203,
+            "nodeCount": 3,
+            "nodeIds": [
+              "adjust",
+              "retry",
+              "miss"
+            ],
+            "nodeSpanPx": 102,
+            "spaceAboveNodesPx": 80,
+            "spaceBelowNodesPx": 21
+          }
+        ],
+        "minimumProjectedNodeTextPx": 6.3,
+        "minimumProjectedNonEdgeTextPx": 6.3,
+        "minimumProjectedEdgeTextPx": 8,
+        "minimumProjectedNodeText": "1인 또는 2인 모드 선택",
+        "minimumProjectedNodeTextDetail": "context",
+        "minimumProjectedNodeTextOwner": {
+          "kind": "node",
+          "id": "mode"
+        },
+        "minimumRequiredNodeTextPx": 6,
+        "readabilityOk": true,
+        "hasLegend": true,
+        "hasNavigationDock": true,
+        "legendDockIntersectionArea": 0,
+        "dockStageIntersectionArea": 0,
+        "dockStageGap": 10,
+        "requiredDockStageGap": 10,
+        "viewerChromeStageOk": true,
+        "viewerChromeReserve": 44,
+        "viewerChromeActive": true,
+        "viewerChromeOk": true,
+        "resolvedTheme": "light"
+      }
+    ]
+  },
+  "captures": {
+    "status": "not-requested",
+    "screenshots": [],
+    "contactSheet": null
+  },
+  "sidecars": {
+    "receipt": "pose-wall-playability.browser-check.json",
+    "files": []
+  }
+}

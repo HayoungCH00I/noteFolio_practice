@@ -19,7 +19,8 @@ export function detectSnowFrame(models: SnowModels, image: HTMLVideoElement | Im
     const mask = result.categoryMask
     if (!mask) return
     const source = mask.getAsUint8Array(), width = Math.min(256, mask.width), height = Math.max(1, Math.round(mask.height / mask.width * width)), data = new Uint8Array(width * height)
-    for (let y = 0; y < height; y++) for (let x = 0; x < width; x++) data[y * width + x] = source[Math.floor(y / height * mask.height) * mask.width + Math.floor(x / width * mask.width)] === 1 ? 1 : 0
+    // This single-class model returns category 0 for selfie pixels and 255 for background.
+    for (let y = 0; y < height; y++) for (let x = 0; x < width; x++) data[y * width + x] = source[Math.floor(y / height * mask.height) * mask.width + Math.floor(x / width * mask.width)] === 0 ? 1 : 0
     sample.mask = { width, height, data }
   })
   return sample

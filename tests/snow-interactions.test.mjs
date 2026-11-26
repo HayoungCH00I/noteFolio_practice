@@ -42,7 +42,7 @@ test('fog is a masked blurred copy of the live camera image', () => {
   assert.ok(drawing.some(([op, mode]) => op === 'drawImage' && mode === 'destination-in'))
 })
 test('HumanSeg category output is copied into a person-only mask', () => {
-  const source = new Uint8Array([0, 1, 1, 0])
+  const source = new Uint8Array([255, 0, 0, 255])
   const models = {
     hand: { detectForVideo: () => ({ landmarks: [], worldLandmarks: [] }) },
     face: { detectForVideo: () => ({ faceLandmarks: [] }) },
@@ -50,7 +50,7 @@ test('HumanSeg category output is copied into a person-only mask', () => {
   }
   const sample = detectSnowFrame(models, {}, 1000, true)
   assert.deepEqual([...sample.mask.data], [0, 1, 1, 0])
-  source.fill(0); assert.equal(sample.mask.data[1], 1, 'returned mask survives disposal of model-owned buffers')
+  source.fill(255); assert.equal(sample.mask.data[1], 1, 'returned mask survives disposal of model-owned buffers')
   assert.equal(detectSnowFrame(models, {}, 1100, false).mask, undefined)
 })
 test('camera permission arriving after Snow is closed is stopped immediately', async () => {

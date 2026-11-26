@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "자세 통과 첫 플레이",
+    "locale": "ko",
+    "quality_profile": "showcase",
+    "output": ".archify/workflow-pose-wall-20261119-213601/pose-wall.html",
+    "legend": {
+      "entries": {
+        "backend": {
+          "label": "게임 판정"
+        }
+      }
+    }
+  },
+  "lanes": [
+    {
+      "id": "play",
+      "label": "플레이 화면"
+    },
+    {
+      "id": "hit",
+      "label": "충돌 결과",
+      "variant": "exception"
+    }
+  ],
+  "mainPath": [
+    "start",
+    "count",
+    "wall",
+    "judge",
+    "pass"
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "lane": "play",
+      "col": 0,
+      "type": "frontend",
+      "label": "카메라 켜기",
+      "sublabel": "시작 버튼 1개"
+    },
+    {
+      "id": "count",
+      "lane": "play",
+      "col": 1,
+      "type": "frontend",
+      "label": "전신 인식",
+      "sublabel": "3초 뒤 자세 저장"
+    },
+    {
+      "id": "wall",
+      "lane": "play",
+      "col": 2,
+      "type": "frontend",
+      "label": "벽이 다가온다",
+      "sublabel": "구멍 위치가 몸을 따라감"
+    },
+    {
+      "id": "judge",
+      "lane": "play",
+      "col": 3,
+      "type": "backend",
+      "label": "자세 판정",
+      "sublabel": "벽에 닿을 때"
+    },
+    {
+      "id": "pass",
+      "lane": "play",
+      "col": 4,
+      "type": "frontend",
+      "label": "통과",
+      "sublabel": "통과 수 +1"
+    },
+    {
+      "id": "miss",
+      "lane": "hit",
+      "col": 3,
+      "type": "frontend",
+      "label": "충돌",
+      "sublabel": "빨간 점멸·빠른 흔들림"
+    },
+    {
+      "id": "end",
+      "lane": "hit",
+      "col": 4,
+      "type": "frontend",
+      "label": "게임 오버",
+      "sublabel": "통과 수와 다시 시작"
+    }
+  ],
+  "edges": [
+    {
+      "from": "start",
+      "to": "count",
+      "role": "main"
+    },
+    {
+      "from": "count",
+      "to": "wall",
+      "role": "main"
+    },
+    {
+      "from": "wall",
+      "to": "judge",
+      "role": "main"
+    },
+    {
+      "from": "judge",
+      "to": "pass",
+      "label": "일치",
+      "variant": "emphasis",
+      "role": "main"
+    },
+    {
+      "from": "judge",
+      "to": "miss",
+      "label": "불일치",
+      "role": "branch"
+    },
+    {
+      "from": "miss",
+      "to": "end",
+      "label": "4회째",
+      "role": "error"
+    },
+    {
+      "from": "pass",
+      "to": "count",
+      "label": "다음 자세",
+      "role": "return",
+      "fromSide": "top",
+      "toSide": "top",
+      "route": "up-channel"
+    },
+    {
+      "from": "miss",
+      "to": "count",
+      "label": "1~3회",
+      "role": "return",
+      "fromSide": "bottom",
+      "toSide": "bottom",
+      "route": "bottom-channel"
+    }
+  ]
+}

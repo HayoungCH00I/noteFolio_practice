@@ -5,7 +5,7 @@ scope.import = async url => { const wasm = await import(/* @vite-ignore */ url);
 let models: FruitModels | undefined
 scope.onmessage = async ({ data }) => {
   try {
-    if (data.type === 'init') { models = await createFruitModels(data.base, true); scope.postMessage({ type: 'ready' }) }
+    if (data.type === 'init') { models = await createFruitModels(data.base, true, data.numHands ?? 1); scope.postMessage({ type: 'ready' }) }
     else if (data.type === 'frame') {
       try {
         if (!models) throw new Error('Tracking is not ready')

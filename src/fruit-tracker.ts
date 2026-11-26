@@ -6,12 +6,12 @@ export class FruitTracker {
   private worker?: Worker
   private models?: { hand: HandLandmarker; face?: FaceLandmarker; segment?: ImageSegmenter }
   private detect = (models: { hand: HandLandmarker; face?: FaceLandmarker }, image: HTMLVideoElement | ImageBitmap, timestamp: number, withFace: boolean): TrackingSample => detectFruitFrame(models as FruitModels, image, timestamp, withFace)
-  private mode: 'fruit' | 'snow' | 'choir'
+  private mode: 'fruit' | 'snow' | 'choir' | 'rubber'
   private base = ''
   private closed = false
   private rejectInit?: (error: Error) => void
   private pending?: { resolve: (sample: TrackingSample) => void; reject: (error: Error) => void }
-  constructor(mode: 'fruit' | 'snow' | 'choir' = 'fruit') { this.mode = mode }
+  constructor(mode: 'fruit' | 'snow' | 'choir' | 'rubber' = 'fruit') { this.mode = mode }
   async init(base: string) {
     this.base = base
     let workerError: unknown
@@ -28,7 +28,7 @@ export class FruitTracker {
             else if (data.type === 'error') { const error = new Error(data.message); this.rejectInit?.(error); this.pending?.reject(error); this.pending = undefined }
           }
           worker.onerror = () => { const error = new Error('Tracking worker interrupted'); this.rejectInit?.(error); this.pending?.reject(error); this.pending = undefined }
-          worker.postMessage({ type: 'init', base })
+          worker.postMessage({ type: 'init', base, numHands: this.mode === 'rubber' ? 2 : 1 })
         })
         return
       } catch (error) { workerError = error; this.rejectInit = undefined; this.worker?.terminate(); this.worker = undefined }
@@ -48,7 +48,7 @@ export class FruitTracker {
     } else if (this.mode === 'choir') {
       const choir = await import('./choir-vision.ts'); models = await choir.createChoirModels(this.base)
       this.detect = (models, image, timestamp) => choir.detectChoirFrame(models, image, timestamp)
-    } else models = await createFruitModels(this.base)
+    } else models = await createFruitModels(this.base, false, this.mode === 'rubber' ? 2 : 1)
     if (this.closed) { models.hand.close(); models.face?.close(); models.segment?.close(); throw new Error('Tracking closed') }
     this.models = models
   }

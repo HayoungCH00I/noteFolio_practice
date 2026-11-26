@@ -51,3 +51,11 @@ test('the choir selects its two-hand worker instead of loading face or segmentat
   assert.match(worker.url, /choir-tracker\.worker/)
   tracker.close(); assert.equal(worker.terminated, true)
 })
+
+test('rubber tracking requests two hands while keeping the face model', async () => {
+  const tracker = new FruitTracker('rubber'); await tracker.init('/mediapipe')
+  const worker = workers.at(-1)
+  assert.match(worker.url, /fruit-tracker\.worker/)
+  assert.equal(worker.message.numHands, 2)
+  tracker.close()
+})

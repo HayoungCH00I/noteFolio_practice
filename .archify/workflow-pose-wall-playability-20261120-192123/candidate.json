@@ -1,0 +1,56 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "자세 통과 플레이 흐름 개선안",
+    "locale": "ko",
+    "output": ".archify/workflow-pose-wall-playability-20261120-192123/pose-wall-playability.html",
+    "quality_profile": "showcase",
+    "legend": { "entries": { "backend": { "label": "게임 판정" }, "frontend": { "label": "플레이 화면" } } }
+  },
+  "lanes": [
+    { "id": "play", "label": "준비부터 벽 통과까지" },
+    { "id": "help", "label": "재안내와 다시 도전" }
+  ],
+  "mainPath": ["mode", "frame", "demo", "wall", "judge", "next"],
+  "nodes": [
+    { "id": "mode", "lane": "play", "col": 0, "type": "frontend", "label": "카메라 켜기", "sublabel": "1인 또는 2인 모드 선택" },
+    { "id": "frame", "lane": "play", "col": 1, "type": "frontend", "label": "전신 맞추기", "sublabel": "바닥선과 자리 안내" },
+    { "id": "demo", "lane": "play", "col": 2, "type": "frontend", "label": "캐릭터 따라 하기", "sublabel": "두 발 고정·팔 동작 시범" },
+    { "id": "wall", "lane": "play", "col": 3, "type": "frontend", "label": "벽이 다가옴", "sublabel": "내 몸과 자세 예시 계속 표시" },
+    { "id": "judge", "lane": "play", "col": 4, "type": "backend", "label": "자세 확인", "sublabel": "몸통과 팔 중심으로 판정" },
+    { "id": "next", "lane": "play", "col": 5, "type": "frontend", "label": "통과", "sublabel": "다음 랜덤 자세 제시" },
+    { "id": "adjust", "lane": "help", "col": 1, "type": "frontend", "label": "자리 조정", "sublabel": "한 걸음 뒤로 또는 옆으로" },
+    { "id": "retry", "lane": "help", "col": 4, "type": "frontend", "label": "인식 다시 확인", "sublabel": "충돌 없이 같은 자세 재시도" },
+    { "id": "miss", "lane": "help", "col": 5, "type": "frontend", "label": "자세 수정 안내", "sublabel": "충돌 후 다음 벽 또는 종료" }
+  ],
+  "edges": [
+    { "from": "mode", "to": "frame", "role": "main" },
+    { "from": "frame", "to": "demo", "role": "main", "label": "자리 확인" },
+    { "from": "demo", "to": "wall", "role": "main", "label": "3초 준비" },
+    { "from": "wall", "to": "judge", "role": "main" },
+    { "from": "judge", "to": "next", "role": "main", "label": "자세 일치", "variant": "emphasis" },
+    { "from": "frame", "to": "adjust", "role": "branch", "label": "전신 잘림" },
+    { "from": "judge", "to": "retry", "role": "branch", "label": "관절 신호 부족" },
+    { "from": "judge", "to": "miss", "role": "error", "label": "자세 불일치", "fromSide": "bottom", "toSide": "top" },
+    { "from": "retry", "to": "demo", "role": "return", "fromSide": "bottom", "toSide": "bottom", "route": "bottom-channel", "label": "같은 자세" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "멀리서도 보이는 화면", "items": [
+      "영상의 머리와 발끝을 유지하고, 카메라를 정면에 고정하도록 안내한다.",
+      "벽이 접근하는 동안 사람 영상이 벽 위에서 계속 보인다. 인물 분리가 불안정하면 벽돌 면을 더 투명하게 처리한다."
+    ] },
+    { "dot": "emerald", "title": "사진 참고 자세의 단순화", "items": [
+      "다리 교차와 달리기는 두 발을 바닥에 둔 채 팔 동작으로 표현한다.",
+      "정면 캐릭터에 두 발 위치를 표시한다. 2인 모드에는 화면 왼쪽과 오른쪽 역할을 각각 붙인다."
+    ] },
+    { "dot": "amber", "title": "첫 플레이 안내", "items": [
+      "자리 확인 뒤 충돌 없는 연습 자세를 한 번 제공한다.",
+      "정면 캐릭터가 시작 자세에서 목표 자세로 움직인다. 한 번에 한 행동만 글로 표시한다."
+    ] },
+    { "dot": "violet", "title": "관절 인식과 판정", "items": [
+      "거리와 키 차이를 보정하고 몸통과 팔의 방향을 비교한다. 기본 자세의 발목 검출은 충돌 조건에서 제외한다.",
+      "접촉 직전 짧은 구간을 함께 본다. 충분한 신호로 자세 차이가 확인되면 충돌을 표시한다."
+    ] }
+  ]
+}

@@ -1,9 +1,19 @@
+import { poseWallMarkup } from './pose-wall-markup.ts'
+import { poseWallTitle } from './pose-wall-core.ts'
+import { trainerMarkup } from './trainer-markup.ts'
+import { trainerTitle } from './trainer-core.ts'
+import minecraftSword from './assets/minecraft-sword.png'
+import rubberFace1 from './assets/rubber-face-1.png'
+import rubberFace2 from './assets/rubber-face-2.png'
+import rubberFace3 from './assets/rubber-face-3.png'
 import { choirMarkup } from './choir-markup.ts'
 import { snowMarkup } from './snow-markup.ts'
 import { FruitSlash, fruitSlashMarkup } from './fruit-slash.ts'
 import { companyMarkup } from './company-markup.ts'
 import { deferredScene } from './deferred-scene.ts'
 import './style.css'
+import './trainer.css'
+import './pose-wall.css'
 import { clawMarkup } from './claw-markup.ts'
 import { Fireworks } from './fireworks.ts'
 import { StageScene } from './scene.ts'
@@ -20,7 +30,8 @@ import usagiYahUrl from './assets/usagi-yahaaaaaa.mp3'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <nav class="page-nav" aria-label="작업실 페이지 선택">
-    <div class="week-nav" aria-label="주차 선택"><button type="button" data-week="1" aria-pressed="true">1주차</button><button type="button" data-week="2" aria-pressed="false">2주차</button><button type="button" data-week="3" aria-pressed="false">3주차</button></div>
+    <details class="page-menu"><summary>예제 더보기 <span aria-hidden="true">⌄</span></summary>
+    <div class="week-nav" aria-label="주차 선택"><button type="button" data-week="1" aria-pressed="true">1주차</button><button type="button" data-week="2" aria-pressed="false">2주차</button><button type="button" data-week="3" aria-pressed="false">3주차</button><button type="button" data-week="4" aria-pressed="false">4주차</button></div>
     <div class="page-nav-links">
     <button type="button" data-page="first" aria-controls="page-first" aria-current="page"><span aria-hidden="true">01</span> 첫번째로 만든거</button>
     <button type="button" data-page="second" aria-controls="page-second"><span aria-hidden="true">02</span> 두번째로 만든거</button>
@@ -32,8 +43,13 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <button type="button" data-page="eighth" aria-controls="page-eighth" hidden><span aria-hidden="true">03</span> 회사</button>
     <button type="button" data-page="ninth" aria-controls="page-ninth" hidden><span aria-hidden="true">08</span> Ninja Fruit Slash</button>
     <button type="button" data-page="tenth" aria-controls="page-tenth" hidden><span aria-hidden="true">09</span> Snow</button>
+    <button type="button" data-page="thirteenth" aria-controls="page-thirteenth" hidden><span aria-hidden="true">FREE</span> MineCraft</button>
+    <button type="button" data-page="fourteenth" aria-controls="page-fourteenth" hidden>${trainerTitle}</button>
+    <button type="button" data-page="twelfth" aria-controls="page-twelfth" hidden><span aria-hidden="true">FREE</span> 고무 인간</button>
     <button type="button" data-page="eleventh" aria-controls="page-eleventh" hidden><span aria-hidden="true">FREE</span> 합창단</button>
+    <button type="button" data-page="fifteenth" aria-controls="page-fifteenth" hidden>${poseWallTitle}</button>
     </div>
+    </details>
   </nav>
   <main class="night app-page" id="page-first">
     <div class="scenery night-scene">
@@ -117,6 +133,29 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   ${fruitSlashMarkup}
   ${snowMarkup}
   ${choirMarkup}
+  ${trainerMarkup}
+  ${poseWallMarkup}
+  <main id="page-thirteenth" class="minecraft-page app-page" hidden>
+    <video class="minecraft-camera" autoplay muted playsinline aria-label="카메라 화면"></video>
+    <canvas class="minecraft-hurt" aria-hidden="true"></canvas><canvas class="minecraft-weapon" aria-hidden="true"></canvas>
+    <div class="minecraft-crosshair" aria-hidden="true"></div>
+    <div class="minecraft-hud" aria-label="선택한 무기: 다이아몬드 검"><div class="minecraft-hearts" aria-hidden="true">♥♥♥♥♥♥♥♥♥♥</div><div class="minecraft-hotbar">${Array.from({ length: 9 }, (_, i) => `<div class="minecraft-slot${i === 0 ? ' selected' : ''}">${i === 0 ? `<img src="${minecraftSword}" alt="">` : ''}</div>`).join('')}</div></div>
+    <div class="minecraft-entry"><section><span>WEEK 04 / CAMERA PLAY</span><h1>MineCraft</h1><p>카메라를 켜고 화면을 클릭하거나 터치해 검을 휘둘러 보세요.<br>십자가가 사람을 가리킬 때 공격하면 빨갛게 반짝여요.</p><button type="button" class="minecraft-start">카메라 켜고 시작하기</button><p class="minecraft-error" role="status"></p><small>카메라 영상은 이 기기 안에서만 처리해요.</small></section></div>
+    <button class="minecraft-attack" type="button" hidden>검 휘두르기</button><button class="minecraft-stop" type="button" hidden>카메라 끄기</button>
+  </main>
+  <main id="page-twelfth" class="rubber-page app-page" hidden>
+    <div class="rubber-mirror"><canvas class="rubber-camera"></canvas><canvas class="rubber-face"></canvas></div>
+    <header class="rubber-heading"><span>WEEK 04 / PLAY WITH YOUR FACE</span><h1>고무 인간</h1><p>양손으로 얼굴을 잡아 쭉, 손바닥으로 문질러 원래대로.</p></header>
+    <div class="rubber-entry"><section><div aria-hidden="true">〰 ✳ 〰</div><h2>얼굴이 말랑말랑</h2><p>양손으로 얼굴을 집어 늘려 보세요.<br>한 손바닥으로 얼굴에 원을 그리면 원래대로!<br>검지로 오른쪽 사진을 가리키면 얼굴이 바뀌어요.</p><button type="button" class="rubber-start">카메라 켜고 시작하기 ↗</button><p class="rubber-error" role="status"></p><small>카메라 영상은 이 기기에서만 처리해요.</small></section></div>
+    <aside class="rubber-faces" aria-label="얼굴 고르기" hidden>
+      <p>검지로 가리켜요</p>
+      <button type="button" class="rubber-original" data-rubber-face="0" aria-pressed="true">내 얼굴</button>
+      <button type="button" class="rubber-option rubber-option-1" data-rubber-face="1" aria-label="첫 번째 사진 얼굴" aria-pressed="false" style="background-image:url('${rubberFace1}')"></button>
+      <button type="button" class="rubber-option rubber-option-2" data-rubber-face="2" aria-label="두 번째 사진 얼굴" aria-pressed="false" style="background-image:url('${rubberFace2}')"></button>
+      <button type="button" class="rubber-option rubber-option-3" data-rubber-face="3" aria-label="세 번째 사진 얼굴" aria-pressed="false" style="background-image:url('${rubberFace3}')"></button>
+    </aside>
+    <footer class="rubber-footer"><p class="rubber-status" role="status">엄지와 검지로 얼굴을 집어보세요</p><button type="button" class="rubber-stop" hidden>카메라 끄기</button></footer>
+  </main>
 `
 
 const effects = new Fireworks(
@@ -142,4 +181,12 @@ const snowRoot = document.querySelector<HTMLElement>('#page-tenth')!
 const snow = deferredScene(snowRoot, async () => { const { SnowScene } = await import('./snow.ts'); return new SnowScene(snowRoot) })
 const choirRoot = document.querySelector<HTMLElement>('#page-eleventh')!
 const choir = deferredScene(choirRoot, async () => { const { ChoirScene } = await import('./choir.ts'); return new ChoirScene(choirRoot) })
-setupPages(effects, bubbles, character, monologue, cat, typingGame, clawGame, company, fruitSlash, snow, choir)
+const rubberRoot = document.querySelector<HTMLElement>('#page-twelfth')!
+const rubber = deferredScene(rubberRoot, async () => { const { RubberScene } = await import('./rubber.ts'); return new RubberScene(rubberRoot) })
+const minecraftRoot = document.querySelector<HTMLElement>('#page-thirteenth')!
+const minecraft = deferredScene(minecraftRoot, async () => { const { MinecraftScene } = await import('./minecraft.ts'); return new MinecraftScene(minecraftRoot) })
+const trainerRoot = document.querySelector<HTMLElement>('#page-fourteenth')!
+const trainer = deferredScene(trainerRoot, async () => { const { TrainerScene } = await import('./trainer.ts'); return new TrainerScene(trainerRoot) })
+const poseWallRoot = document.querySelector<HTMLElement>('#page-fifteenth')!
+const poseWall = deferredScene(poseWallRoot, async () => { const { PoseWallScene } = await import('./pose-wall.ts'); return new PoseWallScene(poseWallRoot) })
+setupPages(effects, bubbles, character, monologue, cat, typingGame, clawGame, company, fruitSlash, snow, choir, rubber, minecraft, trainer, poseWall)

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "workflow",
+  "quality": "showcase",
+  "specification": {
+    "path": "/Users/choihayoung/Documents/notefolio/noteFolio_practice/.archify/workflow-pose-wall-playability-20261120-192123/candidate.json",
+    "sha256": "0bb7d0c5048de50a7ab7bf433235634a4099571c38d2f385f8edb8a66376d0f3",
+    "bytes": 4115
+  },
+  "artifact": {
+    "path": "/Users/choihayoung/Documents/notefolio/noteFolio_practice/.archify/workflow-pose-wall-playability-20261120-192123/pose-wall-playability.html",
+    "sha256": "46480debbf30c14945daf98c4ebf082137f34ee68a7348b15a3c53dc54054ee7",
+    "bytes": 847712
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "/Users/choihayoung/Documents/notefolio/noteFolio_practice/.archify/workflow-pose-wall-playability-20261120-192123/pose-wall-playability.finalize.json",
+    "summaryReceipt": "/Users/choihayoung/Documents/notefolio/noteFolio_practice/.archify/workflow-pose-wall-playability-20261120-192123/pose-wall-playability.finalize-summary.json",
+    "browserCheckReceipt": "/Users/choihayoung/Documents/notefolio/noteFolio_practice/.archify/workflow-pose-wall-playability-20261120-192123/pose-wall-playability.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-11-19T12:36:01.598Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 2836,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  }
+}

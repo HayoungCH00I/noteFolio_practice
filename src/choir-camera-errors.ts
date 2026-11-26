@@ -22,10 +22,10 @@ export function trackingFailure(error: unknown) {
   return `${hint} (${detail.slice(0, 240)})`
 }
 
-export async function requestChoirCamera(request: (constraints: MediaStreamConstraints) => Promise<MediaStream>) {
-  try { return await request({ video: { facingMode: 'user', width: { ideal: 960 }, height: { ideal: 720 }, frameRate: { ideal: 30, max: 30 } }, audio: false }) }
+export async function requestChoirCamera(request: (constraints: MediaStreamConstraints) => Promise<MediaStream>, facingMode: ConstrainDOMString = 'user') {
+  try { return await request({ video: { facingMode, width: { ideal: 960 }, height: { ideal: 720 }, frameRate: { ideal: 30, max: 30 } }, audio: false }) }
   catch (error) {
     if (!error || typeof error !== 'object' || (error as { name?: string }).name !== 'OverconstrainedError') throw error
-    return request({ video: { facingMode: 'user' }, audio: false })
+    return request({ video: { facingMode }, audio: false })
   }
 }

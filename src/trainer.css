@@ -1,0 +1,232 @@
+.trainer-page {
+  --ink: #132c32;
+  --glass: #18373af5;
+  --line: #6f9e99;
+  --mint: #adf2ce;
+  --cream: #f6f1dc;
+  position: relative;
+  height: 100svh;
+  min-height: 440px;
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--cream);
+  background: #132b30;
+}
+.trainer-page [hidden] { display: none !important; }
+.trainer-page button { font: inherit; cursor: pointer; }
+.trainer-page button:focus-visible { outline: 3px solid #ffdd8f; outline-offset: 3px; }
+.trainer-page button:disabled { opacity: .55; cursor: default; }
+.trainer-camera { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
+.trainer-page[data-facing="environment"] .trainer-camera { transform: none; }
+.trainer-hurt { opacity: 0; pointer-events: none; }
+.trainer-page[data-motion="foe-hurt"] .trainer-hurt { animation: trainer-hit .3s ease-out both; }
+.trainer-stage, .trainer-field, .trainer-entry { position: absolute; inset: 0; }
+.trainer-stage {
+  --console-height: 164px;
+  --stage-inset: clamp(15px, 5vw, 76px);
+  background:
+    radial-gradient(ellipse at 67% 24%, #3291a64a, transparent 55%),
+    radial-gradient(ellipse at 69% 74%, #5672ac7d, transparent 65%),
+    repeating-linear-gradient(0deg, transparent 0 16px, #08172c16 16px 21px),
+    linear-gradient(180deg, #092535, #14546b 29%, #102c45 41%, #141e35 43%, #283d65 51%, #263456 72%, #11192b);
+}
+.trainer-tools { position: absolute; z-index: 4; top: max(79px, calc(env(safe-area-inset-top) + 60px)); left: 16px; right: 16px; display: flex; align-items: start; justify-content: space-between; pointer-events: none; }
+.trainer-tools button, .trainer-entry button, .trainer-return, .trainer-inventory button, .trainer-ar-close, .trainer-ar-place {
+  padding: 9px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--cream);
+  background: var(--ink);
+  pointer-events: auto;
+}
+.trainer-boxes span { margin-left: 4px; color: var(--mint); font-variant-numeric: tabular-nums; }
+.trainer-camera-controls { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+.trainer-camera-controls button { font-size: clamp(11px, 3.3vw, 14px); }
+.trainer-camera-status { flex-basis: 100%; margin: 0; text-align: right; font-size: 12px; }
+.trainer-camera-status:empty { display: none; }
+.trainer-field { pointer-events: none; }
+.trainer-orb {
+  width: clamp(62px, 11svh, 92px);
+  aspect-ratio: 1;
+  display: block;
+  border: 3px solid #192834;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 20%, #ffffff9c 0 9%, transparent 10%),
+    linear-gradient(164deg, #fb6b56 0 48%, #273c47 49% 55%, #eae7d7 56% 100%);
+  box-shadow: inset -5px -7px #112c372e, inset 4px 4px #fef7df3d, 0 5px 12px #0007;
+}
+.trainer-orb::after { content: ""; position: absolute; width: 27%; aspect-ratio: 1; left: 50%; top: 51%; translate: -50% -50%; clip-path: polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%); background: radial-gradient(circle, #b9efc8 35%, #f6f0db 39% 53%, #273c47 57%); }
+.trainer-throw {
+  --grab-pad: clamp(30px, 5vw, 65px);
+  position: absolute;
+  left: 50%;
+  translate: -50% 0;
+  bottom: calc(max(52px, env(safe-area-inset-bottom) + 42px) - var(--grab-pad));
+  padding: var(--grab-pad);
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  pointer-events: auto;
+  touch-action: none;
+}
+.trainer-throw .trainer-orb { position: relative; }
+.trainer-throw:active .trainer-orb, .trainer-throw.is-armed .trainer-orb { box-shadow: 0 0 0 4px var(--mint), 0 5px 12px #0007; }
+.trainer-throw.in-flight { pointer-events: none; }
+.trainer-throw.in-flight .trainer-orb { box-shadow: 0 0 0 2px #fff8, 0 0 18px #ffe4a4b8, 0 5px 12px #0007; }
+.trainer-impact { position: absolute; z-index: 2; width: clamp(90px, 20svh, 190px); aspect-ratio: 1; translate: -50% -50%; pointer-events: none; }
+.trainer-impact::before, .trainer-impact::after { content: ""; position: absolute; inset: 0; animation: trainer-spark .46s ease-out both; }
+.trainer-impact::before { background: #fff1b7; clip-path: polygon(50% 0%, 58% 39%, 88% 12%, 66% 44%, 100% 50%, 66% 58%, 88% 87%, 58% 66%, 50% 100%, 42% 66%, 12% 88%, 34% 56%, 0% 50%, 34% 43%, 12% 12%, 42% 39%); }
+.trainer-impact::after { inset: 11%; border: 3px solid #ffcc7a; border-radius: 50%; }
+.trainer-tip { position: absolute; z-index: 2; width: 17px; height: 17px; border: 2px solid var(--mint); border-radius: 50%; translate: -50% -50%; box-shadow: 0 0 9px #0009; }
+.trainer-field-note { position: absolute; margin: 0; bottom: max(14px, env(safe-area-inset-bottom)); left: 50%; translate: -50% 0; width: max-content; max-width: calc(100% - 24px); padding: 6px 10px; border-radius: 6px; background: #142b31e8; font-size: 12px; text-align: center; }
+.trainer-vitals { position: absolute; display: grid; gap: 3px; min-width: min(42vw, 200px); padding: 10px 14px; border: 1px solid #7bb3a9; border-left: 5px solid #adf2ce; border-radius: 0 12px 12px 0; background: var(--glass); box-shadow: 0 3px 0 #132c3299; }
+.trainer-vitals.enemy { left: var(--stage-inset); top: clamp(132px, 22%, 200px); border-left-color: #ffa98f; }
+.trainer-vitals.player { right: var(--stage-inset); bottom: calc(var(--console-height) + 17px); }
+.trainer-vitals span, .trainer-vitals small { font-size: 10px; }
+.trainer-vitals span { color: #b8d8d0; }
+.trainer-vitals meter { width: 100%; height: 13px; }
+.trainer-vitals small { text-align: right; font-variant-numeric: tabular-nums; }
+.trainer-opponent {
+  --portrait-height: clamp(105px, 37svh, 440px);
+  position: absolute;
+  right: var(--stage-inset);
+  top: clamp(128px, 17svh, 165px);
+  width: min(46%, 540px);
+  display: grid;
+  justify-items: center;
+  isolation: isolate;
+}
+.trainer-opponent::before, .trainer-opponent::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--portrait-height) - clamp(17px, 3.2svh, 30px));
+  left: -9%;
+  width: 118%;
+  height: clamp(37px, 9svh, 95px);
+  pointer-events: none;
+}
+.trainer-opponent::before {
+  z-index: -2;
+  transform: translateY(16%);
+  clip-path: polygon(1% 39%, 15% 28%, 36% 22%, 67% 18%, 88% 29%, 99% 44%, 96% 68%, 78% 86%, 55% 96%, 24% 86%, 7% 67%);
+  background: #211e3a;
+}
+.trainer-opponent::after {
+  z-index: -1;
+  clip-path: polygon(0 47%, 5% 37%, 9% 21%, 15% 21%, 19% 34%, 31% 23%, 49% 19%, 61% 25%, 72% 19%, 80% 26%, 84% 10%, 91% 13%, 94% 28%, 100% 42%, 96% 61%, 85% 69%, 79% 82%, 63% 85%, 54% 91%, 33% 88%, 18% 79%, 8% 66%);
+  background:
+    radial-gradient(ellipse at 18% 32%, #a192c5 0 8%, transparent 9%),
+    radial-gradient(ellipse at 83% 56%, #9b88bf 0 8%, transparent 9%),
+    radial-gradient(ellipse at 49% 48%, #4b426d 0 30%, transparent 31%),
+    linear-gradient(167deg, #a099ce, #8375ac 61%, #645481 63%);
+}
+.trainer-portrait { position: relative; width: 100%; height: var(--portrait-height); }
+.trainer-portrait canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center bottom; }
+.trainer-opponent .trainer-orb { position: absolute; inset: auto; top: 81%; width: clamp(36px, 9svh, 75px); border-width: 2px; visibility: hidden; }
+.trainer-console { position: absolute; inset: auto 0 0; min-height: var(--console-height); border-top: 5px solid #a0ccbb; display: grid; grid-template-columns: 1fr; grid-template-rows: minmax(44px, auto) 1fr; align-content: end; gap: 9px; padding: 12px var(--stage-inset) max(12px, env(safe-area-inset-bottom)); background: #142b31f7; }
+.trainer-dialogue { display: flex; align-items: center; padding: 8px 13px; border-left: 3px solid #e9bd75; background: #f6f1dc; color: var(--ink); border-radius: 0 7px 7px 0; }
+.trainer-message { margin: 0; font-size: clamp(14px, 2.5vw, 19px); font-weight: 700; line-height: 1.25; }
+.trainer-actions { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 7px; }
+.trainer-actions button { min-height: 44px; padding: 5px 3px; border: 1px solid #5a8886; border-radius: 7px; background: #24464c; color: var(--cream); font-size: clamp(11px, 2.8vw, 16px); font-weight: 700; }
+.trainer-actions button span { color: var(--mint); }
+.trainer-actions [data-trainer-action="fight"] { background: #803f42; border-color: #e99583; }
+.trainer-actions [data-trainer-action="catch"] { background: #adf2ce; color: var(--ink); }
+.trainer-actions [data-trainer-action="catch"] span { color: inherit; }
+.trainer-return { justify-self: end; align-self: end; }
+.trainer-entry { z-index: 3; display: grid; place-items: center; overflow: auto; padding: 105px 20px 30px; background: radial-gradient(ellipse at 70% 5%, #285151, transparent 65%), #132b30; }
+.trainer-entry section { width: min(540px, 100%); padding: clamp(20px, 5vw, 40px); border-left: 6px solid var(--mint); border-radius: 0 14px 14px 0; background: #1a353a; box-shadow: 0 14px 28px #0004; }
+.trainer-entry h1 { margin: 0; font-size: clamp(25px, 5vw, 44px); letter-spacing: -.06em; line-height: 1.15; filter: none; }
+.trainer-entry p { line-height: 1.6; font-size: 14px; }
+.trainer-entry .trainer-start { background: var(--mint); color: var(--ink); font-weight: 750; }
+.trainer-error:empty { display: none; }
+.trainer-error { color: #ffd696; margin-bottom: 0; }
+.trainer-inventory { width: min(590px, calc(100% - 30px)); max-height: 84svh; padding: 20px; border: 1px solid var(--line); border-radius: 14px; background: #18373a; color: var(--cream); }
+.trainer-inventory::backdrop { background: #071417ca; }
+.trainer-inventory-head { display: flex; align-items: center; justify-content: space-between; }
+.trainer-inventory h2, .trainer-inventory h3 { margin: 7px 0 12px; }
+.trainer-inventory h3 small, .trainer-inventory li small { color: #b8d8d0; }
+.trainer-inventory ol { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; margin: 0 0 18px; padding: 0; list-style: none; }
+.trainer-inventory li { display: grid; gap: 6px; padding: 10px; border: 1px solid #446f71; border-radius: 7px; }
+.trainer-inventory li img { display: block; width: 100%; height: clamp(82px, 19svh, 140px); object-fit: contain; background: #102c30; border-radius: 5px; }
+.trainer-inventory li button { font-size: 12px; }
+.trainer-capture-result {
+  width: min(calc(100% - 28px), 560px);
+  max-height: calc(100svh - 24px);
+  padding: 0;
+  overflow: auto;
+  border: 3px solid #fbecf6;
+  border-radius: 17px;
+  background: #b788a7;
+  color: #292235;
+  box-shadow: 0 16px 70px #0009;
+}
+.trainer-capture-result::backdrop { background: #0a0712c9; }
+.trainer-capture-display {
+  height: clamp(150px, 45svh, 355px);
+  padding: 18px 20px 4px;
+  background: radial-gradient(ellipse at 50% 43%, #f2d9e8 2%, transparent 70%), linear-gradient(170deg, #ac799f, #d1a2c4 67%, #945e87);
+}
+.trainer-capture-display canvas { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center bottom; }
+.trainer-capture-dialogue {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 10px;
+  padding: 14px;
+  border: 2px solid #655470;
+  border-radius: 10px;
+  background: #fffaff;
+}
+.trainer-capture-dialogue h2 { margin: 0; font-size: clamp(18px, 5vw, 25px); }
+.trainer-capture-dialogue p { margin: 4px 0 0; font-size: 13px; line-height: 1.45; }
+.trainer-capture-dialogue button { min-height: 44px; padding: 8px 12px; border: 0; border-radius: 6px; background: #68537b; color: white; font-weight: 700; white-space: nowrap; }
+.trainer-ar { position: absolute; inset: 0; z-index: 8; overflow: hidden; background: #132c32; }
+.trainer-ar[data-world] { background: transparent; }
+.trainer-ar video, .trainer-ar-surface { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.trainer-ar-surface { background: transparent; border: 0; }
+.trainer-ar-avatar { position: absolute; width: clamp(62px, 17vw, 150px); translate: -50% -98%; text-align: center; pointer-events: none; }
+.trainer-ar-avatar img { display: block; width: 100%; max-height: 40svh; object-fit: contain; object-position: center bottom; }
+.trainer-ar-avatar strong { display: inline-block; background: var(--ink); border-radius: 5px; padding: 3px 8px; font-size: 12px; }
+.trainer-ar-quick-look { position: absolute; inset: 44% auto auto 50%; translate: -50% -50%; display: grid; gap: 8px; padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--ink); color: var(--cream); text-align: center; text-decoration: none; }
+.trainer-ar-quick-look img { display: block; width: clamp(100px, 40vw, 220px); height: min(35svh, 260px); object-fit: contain; }
+.trainer-ar-quick-look::after { content: 'AR로 열기'; padding: 8px; border-radius: 6px; background: var(--mint); color: var(--ink); font-weight: 700; }
+.trainer-ar-quick-look[aria-disabled="true"]::after { opacity: .55; }
+.trainer-ar-quick-look:focus-visible { outline: 3px solid #ffdd8f; outline-offset: 3px; }
+.trainer-ar p { position: absolute; left: 16px; bottom: max(68px, env(safe-area-inset-bottom)); right: 16px; width: fit-content; padding: 10px; border-radius: 6px; background: var(--ink); font-size: 13px; pointer-events: none; }
+.trainer-ar-close, .trainer-ar-place { position: absolute; bottom: max(22px, env(safe-area-inset-bottom)); }
+.trainer-ar-close { left: 16px; }.trainer-ar-place { right: 16px; }
+.trainer-motion { position: absolute; left: 54%; top: 44%; width: 12svh; aspect-ratio: 1; background: radial-gradient(circle, #fdf5c5 5%, #adf2ce 19%, #92e6cb41 40%, transparent 64%); opacity: 0; pointer-events: none; }
+.trainer-page[data-motion="strike"] .trainer-motion { animation: trainer-strike .36s ease-out; }
+.trainer-page[data-motion="counter"] .trainer-motion { animation: trainer-counter .42s ease-in; }
+.trainer-page[data-motion="foe-hurt"] .trainer-portrait { animation: trainer-foe-hit .3s ease-out; }
+.trainer-page[data-motion="hurt"] .trainer-vitals.player { animation: trainer-player-hit .44s ease-out; }
+.trainer-page[data-motion="heal"] .trainer-motion { left: 44%; animation: trainer-heal .7s ease-out; }
+.trainer-page[data-motion="run"] .trainer-stage { animation: trainer-run .65s ease-out; }
+.trainer-page[data-motion="enter"] .trainer-vitals, .trainer-page[data-motion="enter"] .trainer-opponent { animation: trainer-enter .48s ease-out; }
+.trainer-page[data-motion="capture"] .trainer-opponent .trainer-orb { visibility: visible; animation: trainer-capture 1.5s ease-in-out both; }
+.trainer-page[data-motion="capture"] .trainer-portrait { transform-origin: center bottom; animation: trainer-absorb 1.5s both; }
+.trainer-page[data-motion="captured"] .trainer-opponent .trainer-orb { visibility: visible; }
+.trainer-page[data-motion="captured"] .trainer-portrait { visibility: hidden; }
+@keyframes trainer-spark { 0% { scale: .2; opacity: .4; } 26% { opacity: 1; } 100% { scale: 1.5; opacity: 0; } }
+@keyframes trainer-hit { 0%, 100% { opacity: 0; } 16%, 48% { opacity: .9; } }
+@keyframes trainer-strike { from { transform: translate(-25vw, 15vh) scale(.35); opacity: .2; } 65% { opacity: 1; } to { transform: translate(17vw, -11vh) scale(1.5); opacity: 0; } }
+@keyframes trainer-counter { from { transform: translate(18vw, -10vh) scale(.3); opacity: .2; } 70% { opacity: 1; } to { transform: translate(-10vw, 12vh) scale(1.7); opacity: 0; } }
+@keyframes trainer-foe-hit { 30% { translate: 9px -4px; } }
+@keyframes trainer-player-hit { 30% { border-color: #fa2442; background: #57242e; } }
+@keyframes trainer-heal { 15% { opacity: .85; } to { transform: translateY(-15vh) scale(2); opacity: 0; } }
+@keyframes trainer-run { 45% { filter: brightness(.35); } }
+@keyframes trainer-enter { from { translate: 20px 0; opacity: 0; } }
+@keyframes trainer-capture { 0% { transform: translate(-30vw, 12vh) rotate(-90deg); } 35%, 100% { transform: none; } 48%, 68%, 88% { rotate: 18deg; } 58%, 78%, 96% { rotate: -14deg; } }
+@keyframes trainer-absorb { 30% { scale: 1; } 40%, 100% { scale: 0; opacity: 0; } }
+@media (max-height: 550px) {
+  .trainer-stage { --console-height: 128px; }
+  .trainer-vitals.enemy, .trainer-opponent { top: 118px; }
+  .trainer-vitals { padding-block: 5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .trainer-page * { animation: none !important; }
+  .trainer-page[data-motion="foe-hurt"] .trainer-hurt { opacity: .35; }
+  .trainer-page[data-motion="capture"] .trainer-portrait { visibility: hidden; }
+  .trainer-impact::after { opacity: .6; }
+}

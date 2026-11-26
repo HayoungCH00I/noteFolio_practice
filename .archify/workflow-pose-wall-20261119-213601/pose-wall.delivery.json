@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "2f2aba7e-37a9-4599-a26f-33efff97834d",
+  "status": "current",
+  "command": "deliver",
+  "type": "workflow",
+  "input": "/Users/choihayoung/Documents/notefolio/noteFolio_practice/.archify/workflow-pose-wall-20261119-213601/candidate.json",
+  "output": "/Users/choihayoung/Documents/notefolio/noteFolio_practice/.archify/workflow-pose-wall-20261119-213601/pose-wall.html",
+  "specification": {
+    "sha256": "59c99c66957b5b722e6136d1e7610d354f1d2dc12bd1aa739269082a1a8e6b23",
+    "bytes": 2813
+  },
+  "artifact": {
+    "sha256": "b3330a13d17b0a76d04b1a46c9e69d2a87d2b4e364d055d3dfba4028fb4f193e",
+    "bytes": 841045
+  }
+}
