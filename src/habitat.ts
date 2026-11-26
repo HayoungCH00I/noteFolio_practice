@@ -177,6 +177,7 @@ export async function createHabitat(root:HTMLElement){
   }
   const nextNormal=new T.Vector3(),nextForward=new T.Vector3()
   function moveResidents(dt:number){
+    const walkDt=dt*2
     const neighborhood=town??example
     for(const who of people){
       const avatar=who.avatar,p=avatar.model.position
@@ -185,11 +186,11 @@ export async function createHabitat(root:HTMLElement){
       let distance=0
       if(manual){
         who.forward.applyAxisAngle(who.normal,((held.has('ArrowLeft')?1:0)-(held.has('ArrowRight')?1:0))*2.5*dt)
-        distance=((held.has('ArrowUp')?1:0)-(held.has('ArrowDown')?1:0))*manualWalkSpeed*dt
+        distance=((held.has('ArrowUp')?1:0)-(held.has('ArrowDown')?1:0))*manualWalkSpeed*walkDt
       }else if(mode!=='chat' || who!==person){
         who.wander-=dt
         if(who.wander<=0){who.forward.applyAxisAngle(who.normal,(Math.random()-.5)*1.15);who.wander=2+Math.random()*4}
-        distance=(1.5+who.index*.08)*.5*dt
+        distance=(1.5+who.index*.08)*.5*walkDt
       }
       let moving=false
       if(distance){
@@ -199,7 +200,7 @@ export async function createHabitat(root:HTMLElement){
           p.copy(who.normal).multiplyScalar(neighborhood.floor(who.normal))
         }else if(!manual){who.forward.applyAxisAngle(who.normal,1.8+Math.random()*.8);who.wander=1.5}
       }
-      orient(who.normal,who.forward,avatar.model.quaternion);avatar.pose(dt,moving)
+      orient(who.normal,who.forward,avatar.model.quaternion);avatar.pose(walkDt,moving)
     }
   }
   function follow(dt:number){
