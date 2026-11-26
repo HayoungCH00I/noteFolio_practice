@@ -1,3 +1,5 @@
+import { habitatMarkup } from './habitat-markup.ts'
+import './habitat.css'
 import { poseWallMarkup } from './pose-wall-markup.ts'
 import { poseWallTitle } from './pose-wall-core.ts'
 import { trainerMarkup } from './trainer-markup.ts'
@@ -31,7 +33,7 @@ import usagiYahUrl from './assets/usagi-yahaaaaaa.mp3'
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <nav class="page-nav" aria-label="작업실 페이지 선택">
     <details class="page-menu"><summary>예제 더보기 <span aria-hidden="true">⌄</span></summary>
-    <div class="week-nav" aria-label="주차 선택"><button type="button" data-week="1" aria-pressed="true">1주차</button><button type="button" data-week="2" aria-pressed="false">2주차</button><button type="button" data-week="3" aria-pressed="false">3주차</button><button type="button" data-week="4" aria-pressed="false">4주차</button></div>
+    <div class="week-nav" aria-label="주차 선택"><button type="button" data-week="1" aria-pressed="true">1주차</button><button type="button" data-week="2" aria-pressed="false">2주차</button><button type="button" data-week="3" aria-pressed="false">3주차</button><button type="button" data-week="4" aria-pressed="false">4주차</button><button type="button" data-week="5" aria-pressed="false">5주차</button></div>
     <div class="page-nav-links">
     <button type="button" data-page="first" aria-controls="page-first" aria-current="page"><span aria-hidden="true">01</span> 첫번째로 만든거</button>
     <button type="button" data-page="second" aria-controls="page-second"><span aria-hidden="true">02</span> 두번째로 만든거</button>
@@ -48,6 +50,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <button type="button" data-page="twelfth" aria-controls="page-twelfth" hidden><span aria-hidden="true">FREE</span> 고무 인간</button>
     <button type="button" data-page="eleventh" aria-controls="page-eleventh" hidden><span aria-hidden="true">FREE</span> 합창단</button>
     <button type="button" data-page="fifteenth" aria-controls="page-fifteenth" hidden>${poseWallTitle}</button>
+    <button type="button" data-page="sixteenth" aria-controls="page-sixteenth" hidden>우리 동네 걷기</button>
     </div>
     </details>
   </nav>
@@ -135,6 +138,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   ${choirMarkup}
   ${trainerMarkup}
   ${poseWallMarkup}
+  ${habitatMarkup}
   <main id="page-thirteenth" class="minecraft-page app-page" hidden>
     <video class="minecraft-camera" autoplay muted playsinline aria-label="카메라 화면"></video>
     <canvas class="minecraft-hurt" aria-hidden="true"></canvas><canvas class="minecraft-weapon" aria-hidden="true"></canvas>
@@ -189,4 +193,6 @@ const trainerRoot = document.querySelector<HTMLElement>('#page-fourteenth')!
 const trainer = deferredScene(trainerRoot, async () => { const { TrainerScene } = await import('./trainer.ts'); return new TrainerScene(trainerRoot) })
 const poseWallRoot = document.querySelector<HTMLElement>('#page-fifteenth')!
 const poseWall = deferredScene(poseWallRoot, async () => { const { PoseWallScene } = await import('./pose-wall.ts'); return new PoseWallScene(poseWallRoot) })
-setupPages(effects, bubbles, character, monologue, cat, typingGame, clawGame, company, fruitSlash, snow, choir, rubber, minecraft, trainer, poseWall)
+const habitatRoot = document.querySelector<HTMLElement>('#page-sixteenth')!
+const habitat = deferredScene(habitatRoot, async () => { const { createHabitat } = await import('./habitat.ts'); return createHabitat(habitatRoot) })
+setupPages(effects, bubbles, character, monologue, cat, typingGame, clawGame, company, fruitSlash, snow, choir, rubber, minecraft, trainer, poseWall, habitat)

@@ -20,3 +20,4 @@
 - 자세 통과의 반투명 벽, 3D 안내 캐릭터, 인식 재시도 적용 후 전체 브라우저 및 실기기 QA를 보류했다. 휴대폰 전·후면 실영상으로 인물 윤곽과 구멍의 합성, 2인 상태색과 판정, 연습 후 점수 반영을 확인한다.
 - 자세 통과 안내 마네킹을 Spline에서 모델링하고 게임에 단일 변형 메시로 연결했다. 전신 아홉 자세의 브라우저 모션 검증과 모바일 실제 플레이를 최종 QA에서 확인한다.
 - 자세 통과 안내 캐릭터를 MakeHuman의 CC0 hm08 성인 남성형 비율을 바탕으로 교체했다. 흉곽과 골반 앞면은 중성적인 실루엣이 되도록 평탄화했다. [기본 메시](https://github.com/makehumancommunity/makehuman/blob/master/makehuman/data/3dobjs/base.obj)와 [공식 관절 가중치](https://github.com/makehumancommunity/makehuman/blob/master/makehuman/data/rigs/default_weights.mhw)를 게임용 14개 관절로 정리한 에셋은 `src/assets/pose-wall-human.glb`에 있다. 게임 브라우저에서 자세별 손발 모양과 상태색 가독성을 최종 QA에서 확인한다.
+- 5주차 작은 지구 입주처(`#sixteenth`)는 Spline 장면의 대륙 점 좌표를 사용한다. 최종 QA에서 모바일 핀치, 데스크톱 회전·확대, 실제 카메라 권한 거부와 재시도, 사진 방향·위치, 투명 이미지 입주와 보행, 페이지 이동 시 카메라 종료를 확인한다.

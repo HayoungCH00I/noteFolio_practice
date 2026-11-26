@@ -1,0 +1,43 @@
+.habitat {height:100svh;position:relative;overflow:hidden;color:#eef8ed;background:radial-gradient(ellipse at 52% 46%,#355565,#122533 60%,#0c1721);font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif}
+.habitat [hidden]{display:none!important}
+.habitat-world{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
+.habitat-world:active{cursor:grabbing}
+.habitat header{position:absolute;top:clamp(68px,10vh,105px);left:clamp(16px,4vw,68px);max-width:min(65vw,540px);pointer-events:none}
+.habitat h1{font-size:clamp(1.5rem,3.3vw,3.6rem);letter-spacing:-.07em;margin:0}
+.habitat header p{margin:.55em 0;font-size:clamp(.74rem,1.2vw,.95rem);line-height:1.5}
+.habitat footer{position:absolute;bottom:max(30px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%)}
+.habitat button{border:0;border-radius:24px;padding:10px 16px;background:#fbf1d8;color:#4d4935;font-weight:700;cursor:pointer}
+.habitat button:hover{filter:brightness(.96)}
+.habitat button:focus-visible,.habitat input:focus-visible{outline:3px solid #dfa84c;outline-offset:2px}
+.habitat button:disabled{opacity:.5;cursor:wait}
+.habitat footer button,.habitat .habitat-primary{background:#bfe8aa;color:#274e39;padding:13px 24px}
+.habitat footer span{margin-left:1.4em}
+.habitat-town{background:linear-gradient(#9cd6dd,#d2e9d2 70%,#e5dfc3)}
+.habitat-town header{background:#fff8e8e8;color:#4d5842;border-radius:4px 24px 24px 24px;padding:10px 17px}
+.habitat-town h1{font-size:clamp(1rem,2.1vw,1.55rem)}
+.habitat dialog{color-scheme:light;width:min(390px,92vw);max-height:88svh;overflow:auto;background:#fff7e6;color:#4f5140;border:2px solid #fffcf3;border-radius:26px;padding:22px;box-shadow:0 14px 50px #192c3633}
+.habitat dialog::backdrop{background:#10232eaa}
+.habitat h2{margin:0 36px 12px 0;font-size:1.3rem}
+.habitat .habitat-close{position:absolute;right:10px;top:8px;font-size:20px;padding:5px 12px}
+.habitat dialog section,.habitat dialog form,.habitat-results{display:grid;gap:10px}
+.habitat dialog label{display:grid;gap:6px;font-size:.85rem;font-weight:700}
+.habitat dialog input{width:100%;border:1px solid #c8c5ac;background:#fffdf7;color:#3d463a;border-radius:10px;padding:9px;font:inherit}
+.habitat dialog p{font-size:.82rem;line-height:1.5;margin:10px 0 0;min-height:1em}
+.habitat-portrait{position:relative;height:clamp(140px,25svh,240px);border-radius:16px;overflow:hidden;background:radial-gradient(ellipse at 50% 65%,#f9e8c7,#b4d0b0)}
+.habitat-portrait canvas,.habitat-portrait video{width:100%;height:100%;display:block}
+.habitat-portrait video{position:absolute;inset:0;object-fit:contain;background:#253833;transform:scaleX(-1)}
+.habitat-buttons,.habitat-chat div,.habitat-toolbar,.habitat-actions{display:flex;gap:6px;flex-wrap:wrap}
+.habitat-actions{position:absolute;left:0;top:0;justify-content:center;width:max-content;max-width:95vw;filter:drop-shadow(0 3px 5px #26382b40)}
+.habitat-actions button,.habitat-toolbar button,.habitat-pad button{font-size:.82rem}
+.habitat-toolbar{position:absolute;right:12px;bottom:34px;justify-content:flex-end}
+.habitat-pad{position:absolute;left:12px;bottom:32px;display:grid;grid-template-columns:repeat(3,39px);gap:3px}
+.habitat-pad button{touch-action:none;padding:10px}
+.habitat-pad button:first-child{grid-column:2}.habitat-pad button:nth-child(2){grid-column:1}
+.habitat-chat{position:absolute;bottom:max(42px,8vh);left:50%;transform:translateX(-50%);width:min(460px,90vw);background:#fff7df;color:#514a35;border-radius:36px 30px 40px 28px;padding:24px;box-shadow:0 8px 30px #29453433}
+.habitat-chat strong{position:absolute;left:26px;top:-15px;background:#74ad91;color:#163d34;padding:5px 14px;border-radius:16px;transform:rotate(-3deg)}
+.habitat-chat p{font-weight:650;line-height:1.65;margin:0 0 12px}
+.habitat-chat button{background:#f3deb0;padding:8px 12px;font-size:.86rem}
+.habitat-credit{position:absolute;right:0;bottom:0;background:#fff9e6df;color:#394b44;font-size:10px;padding:3px 7px;border-radius:8px 0 0 0}
+.habitat-credit a{color:inherit}
+@media(max-width:600px){.habitat-toolbar{max-width:53%;bottom:28px}.habitat-toolbar button{padding:8px 10px}.habitat-town header{max-width:80vw}.habitat-actions button{padding:7px 11px}}
+@media(max-width:380px){.page-nav .week-nav button{padding-inline:9px}}
