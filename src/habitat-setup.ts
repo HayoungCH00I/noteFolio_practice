@@ -1,8 +1,8 @@
 import * as T from 'three'
 import { searchAddress, loadDistrict, type District, type Place } from './habitat-map.ts'
-import type { loadWalker } from './habitat-resident.ts'
+import type { Walker } from './habitat-resident.ts'
 
-export function setupMoveIn(root:HTMLElement,walker:Awaited<ReturnType<typeof loadWalker>>,enter:(place:Place,map:District)=>void){
+export function setupMoveIn(root:HTMLElement,walker:Walker,enter:(place:Place,map:District)=>void){
   const get=<E extends HTMLElement>(s:string)=>root.querySelector<E>(s)!
   const dialog=get<HTMLDialogElement>('dialog'),video=get<HTMLVideoElement>('video'),file=get<HTMLInputElement>('[data-art]')
   const cameraButton=get<HTMLButtonElement>('[data-camera]'),shoot=get<HTMLButtonElement>('[data-shoot]')
@@ -13,6 +13,7 @@ export function setupMoveIn(root:HTMLElement,walker:Awaited<ReturnType<typeof lo
   const light=new T.DirectionalLight(0xfff3d8,2);light.position.set(2,4,3);scene.add(light)
   camera.position.set(.3,1.45,4.65);camera.lookAt(0,1.18,0)
   let renderer:T.WebGLRenderer|undefined,stream:MediaStream|undefined,request:AbortController|undefined
+  let editing:Walker|undefined
   let cameraVersion=0,uploadVersion=0
   function paint(){
     if(!dialog.open||!preview.clientWidth)return
@@ -31,8 +32,9 @@ export function setupMoveIn(root:HTMLElement,walker:Awaited<ReturnType<typeof lo
   }
   function step(skin:boolean){
     get('[data-skin-step]').hidden=!skin;get('[data-address-step]').hidden=skin
-    get('#habitat-title').textContent=skin?'캐릭터 만들기':'걸어갈 동네 찾기'
-    message.textContent=skin?'사진을 넣으면 얼굴과 옷에 스킨을 입혀요.':'주소 검색 결과에서 산책할 위치를 골라 주세요.'
+    get('#habitat-title').textContent=editing?'주민 스킨 바꾸기':skin?'캐릭터 만들기':'걸어갈 동네 찾기'
+    next.textContent=editing?'이 주민에게 적용':'이 캐릭터로 동네 찾기'
+    message.textContent=skin?'사진을 넣으면 얼굴과 옷에 스킨을 입혀요.':'대한민국 주소나 장소 이름으로 산책할 동네를 찾아보세요.'
     if(skin)paint();else {stopCamera();address.focus()}
   }
   function applyImage(image:CanvasImageSource,w:number,h:number,mirror=false){
@@ -61,7 +63,7 @@ export function setupMoveIn(root:HTMLElement,walker:Awaited<ReturnType<typeof lo
     }catch{if(version===cameraVersion){stopCamera();message.textContent='카메라 권한과 HTTPS 연결을 확인하거나 사진 파일을 골라 주세요.'}}
   }
   shoot.onclick=()=>{if(video.videoWidth){applyImage(video,video.videoWidth,video.videoHeight,true);stopCamera()}}
-  next.onclick=()=>step(false)
+  next.onclick=()=>{if(editing){editing.copySkin(walker);stop()}else step(false)}
   function cancelRequest(){request?.abort();request=undefined;results.replaceChildren()}
   get('[data-back]').onclick=()=>{cancelRequest();step(true)}
   address.oninput=cancelRequest
@@ -72,7 +74,7 @@ export function setupMoveIn(root:HTMLElement,walker:Awaited<ReturnType<typeof lo
     try{
       const places=await searchAddress(query,operation.signal)
       if(operation.signal.aborted)return
-      message.textContent=places.length?'내가 찾는 위치를 골라 주세요.':'결과가 없어요. 도로명이나 근처 역 이름을 입력해 주세요.'
+      message.textContent=places.length?'내가 찾는 위치를 골라 주세요.':'대한민국 검색 결과가 없어요. 도로명이나 근처 역 이름을 입력해 주세요.'
       for(const place of places){
         const button=document.createElement('button');button.type='button';button.textContent=place.name
         button.onclick=async()=>{
@@ -89,7 +91,8 @@ export function setupMoveIn(root:HTMLElement,walker:Awaited<ReturnType<typeof lo
     }catch{if(!operation.signal.aborted)message.textContent='주소 검색에 연결하지 못했어요. 잠시 후 다시 검색해 주세요.'}
   }
   get('.habitat-close').onclick=stop;dialog.addEventListener('close',stop)
-  return {stop,open(){
+  return {stop,open(source:Walker,variant:number,edit=false){
+    editing=edit?source:undefined;walker.setVariant(variant);walker.copySkin(source)
     next.disabled=false;file.value='';address.value='';results.replaceChildren()
     scene.add(walker.model);walker.model.position.set(0,0,0);walker.model.rotation.set(0,0,0);walker.pose(0,false)
     dialog.showModal();step(true)

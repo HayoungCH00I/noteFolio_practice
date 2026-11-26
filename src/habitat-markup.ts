@@ -1,11 +1,11 @@
 export const habitatMarkup = `
 <main id="page-sixteenth" class="app-page habitat" hidden>
   <canvas class="habitat-world" tabindex="0" aria-label="3D 지구와 동네 산책 화면"></canvas>
-  <header><h1>우리 동네 걷기</h1><p data-location>드래그로 지구를 돌리고, 휠이나 두 손가락으로 확대해 보세요.</p></header>
+  <header><h1>우리 동네 걷기</h1><p data-location>드래그로 지구를 돌리고, 휠이나 두 손가락으로 확대해 보세요.</p><label class="habitat-season">계절 <select data-season><option value="spring">봄</option><option value="summer">여름</option><option value="autumn">가을</option><option value="winter">겨울</option></select></label></header>
   <footer><button type="button" data-join>우리 동네 걷기 <span aria-hidden="true">↗</span></button></footer>
-  <div class="habitat-actions" data-actions hidden><button data-talk>대화하기</button><button data-manual>직접 걷기</button></div>
+  <div class="habitat-actions" data-actions hidden><button data-talk>대화하기</button><button data-manual>직접 걷기</button><button data-skin>스킨 바꾸기</button></div>
   <div class="habitat-toolbar" data-toolbar hidden>
-    <button data-select>주민 선택</button><button data-view hidden>앞모습 보기</button>
+    <select data-roster aria-label="주민 고르기"></select><button data-select>주민 선택</button><button data-view hidden>앞모습 보기</button>
     <button data-auto hidden>자동 산책</button><button data-home>지구로</button>
   </div>
   <div class="habitat-pad" data-pad hidden aria-label="캐릭터 이동">
@@ -13,7 +13,7 @@ export const habitatMarkup = `
     <button data-key="ArrowDown" aria-label="뒤로 걷기">▼</button><button data-key="ArrowRight" aria-label="오른쪽으로 돌기">▶</button>
   </div>
   <section class="habitat-chat" data-chat hidden aria-label="주민 대화">
-    <strong>산책 주민</strong><p aria-live="polite" data-line></p>
+    <strong data-speaker>산책 주민</strong><p aria-live="polite" data-line></p>
     <div><button data-near>근처에 뭐가 있어?</button><button data-goodbye>다시 산책하자</button></div>
   </section>
   <small class="habitat-credit" hidden><a href="https://openfreemap.org/" target="_blank" rel="noreferrer">OpenFreeMap</a> · <a href="https://openmaptiles.org/" target="_blank" rel="noreferrer">© OpenMapTiles</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">© OpenStreetMap</a></small>
@@ -27,7 +27,7 @@ export const habitatMarkup = `
       <button type="button" class="habitat-primary" data-next>이 캐릭터로 동네 찾기</button>
     </section>
     <section data-address-step hidden>
-      <form data-search><label>산책할 주소 또는 장소<input data-address required maxlength="180" placeholder="예: 서울특별시 중구 세종대로 110"></label>
+      <form data-search><label>대한민국 주소 또는 장소<input data-address required maxlength="180" placeholder="예: 서울특별시 중구 세종대로 110"></label>
       <button class="habitat-primary">주소 검색</button></form>
       <div data-results class="habitat-results"></div>
       <button type="button" data-back>캐릭터로 돌아가기</button>

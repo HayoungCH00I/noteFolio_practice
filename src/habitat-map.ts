@@ -7,12 +7,14 @@ export type Landmark = { name:string; kind:'station'|'sight'|'place'; point:Poin
 export type District = {
   buildings:{ring:Point[]; height:number}[]
   paths:Point[][]
+  streams:Point[][]
+  bridges:Point[][]
   water:Point[][]
   parks:Point[][]
   landmarks:Landmark[]
 }
 export const radius = 23
-const meters = 260
+export const districtMeters = 150
 const zoom = 14
 const n = 2 ** zoom
 
@@ -24,11 +26,11 @@ async function request(url:string, signal:AbortSignal) {
 
 export async function searchAddress(query:string, signal:AbortSignal):Promise<Place[]> {
   const url=new URL('https://photon.komoot.io/api/')
-  url.search=new URLSearchParams({q:query,limit:'5'}).toString()
+  url.search=new URLSearchParams({q:query,limit:'5',lang:'default',bbox:'124.5,33,132,38.7'}).toString()
   const data=await (await request(url.href,signal)).json()
   return data.features.flatMap((item:{geometry:{coordinates:number[]};properties:Record<string,string>})=>{
     const [lon,lat]=item.geometry.coordinates,p=item.properties
-    if(!Number.isFinite(lon)||!Number.isFinite(lat)||Math.abs(lat)>85)return []
+    if(p.countrycode?.toUpperCase()!=='KR'||!Number.isFinite(lon)||!Number.isFinite(lat)||Math.abs(lat)>85)return []
     const name=[...new Set([p.city,p.district,p.street,p.housenumber,p.name].filter(Boolean))].join(' ')
     return [{lat,lon,name:name||p.country||query}]
   })
@@ -46,17 +48,17 @@ export function inside([x,z]:Point,ring:Point[]) {
 export async function loadDistrict(place:Place,signal:AbortSignal):Promise<District> {
   const cx=(place.lon+180)/360*n, radians=place.lat*Math.PI/180
   const cy=(1-Math.asinh(Math.tan(radians))/Math.PI)/2*n
-  const span=meters/(40075016.7*Math.cos(radians)/n)
+  const span=districtMeters/(40075016.7*Math.cos(radians)/n)
   const tiles=await (await request('https://tiles.openfreemap.org/planet',signal)).json()
   const jobs:Promise<void>[]=[]
-  const district:District={buildings:[],paths:[],water:[],parks:[],landmarks:[]}
+  const district:District={buildings:[],paths:[],water:[],streams:[],bridges:[],parks:[],landmarks:[]}
   const unique=new Set<string>()
   async function read(x:number,y:number){
     const url=tiles.tiles[0].replace('{z}',zoom).replace('{x}',(x+n)%n).replace('{y}',y)
     const buffer=await (await request(url,signal)).arrayBuffer()
     if(!buffer.byteLength)return
     const tile=new VectorTile(new PbfReader(new Uint8Array(buffer)))
-    for(const layerName of ['building','transportation','water','park','poi']){
+    for(const layerName of ['building','transportation','water','waterway','park','poi']){
       const layer=tile.layers[layerName]
       if(!layer)continue
       for(let i=0;i<layer.length;i++){
@@ -69,7 +71,7 @@ export async function loadDistrict(place:Place,signal:AbortSignal):Promise<Distr
         if(unique.has(key))continue
         unique.add(key)
         const name=String(p['name:ko']||p.name||'')
-        if(name && (layerName==='poi'||layerName==='park') && Math.hypot(...center)<radius-1){
+        if(name && (layerName==='poi'||layerName==='park') && center.every(v=>Math.abs(v)<radius)){
           const type=[p.class,p.subclass].join(' ')
           const kind=/subway|railway.*station|train_station/.test(type)?'station':/attraction|museum|historic|monument|castle|gallery|theatre|park|tourism|town_hall/.test(type)?'sight':'place'
           district.landmarks.push({name,kind,point:center})
@@ -77,11 +79,22 @@ export async function loadDistrict(place:Place,signal:AbortSignal):Promise<Distr
         if(layerName==='poi')continue
         for(const line of feature.loadGeometry()){
           const ring=line.map(({x,y})=>convert(x,y))
-          if(layerName==='building' && ring.length>3 && Math.hypot(...center)<radius-1 && ring.every(pt=>Math.hypot(...pt)<radius)){
+          const nearby=ring.some(([x,z],i)=>{
+            if(Math.abs(x)<=radius && Math.abs(z)<=radius)return true
+            if(!i)return false
+            const [ax,az]=ring[i-1],dx=x-ax,dz=z-az
+            const t=Math.min(1,Math.max(0,-(ax*dx+az*dz)/(dx*dx+dz*dz||1)))
+            return Math.hypot(ax+t*dx,az+t*dz)<=radius
+          })
+          if(!nearby && !(feature.type===3 && inside([0,0],ring)))continue
+          if(layerName==='building' && ring.length>3 && ring.every(pt=>pt.every(v=>Math.abs(v)<radius))){
             district.buildings.push({ring,height:Math.min(4.4,1.1+Math.max(0,Number(p.render_height)||0)*.065)})
           }else if(layerName==='transportation' && feature.type===2 && !/rail|ferry|aerialway/.test(String(p.class))){
+            if(p.brunnel==='tunnel' || (p.brunnel!=='bridge' && (p.class==='service' || p.subclass==='steps')))continue
             district.paths.push(ring)
-          }else if(layerName==='water' && feature.type===3)district.water.push(ring)
+            if(p.brunnel==='bridge')district.bridges.push(ring)
+          }else if(layerName==='waterway' && feature.type===2)district.streams.push(ring)
+          else if(layerName==='water' && feature.type===3)district.water.push(ring)
           else if(layerName==='park' && feature.type===3)district.parks.push(ring)
         }
       }

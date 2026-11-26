@@ -41,3 +41,13 @@
 .habitat-credit a{color:inherit}
 @media(max-width:600px){.habitat-toolbar{max-width:53%;bottom:28px}.habitat-toolbar button{padding:8px 10px}.habitat-town header{max-width:80vw}.habitat-actions button{padding:7px 11px}}
 @media(max-width:380px){.page-nav .week-nav button{padding-inline:9px}}
+.habitat{background:radial-gradient(ellipse at 50% 45%,#faf4d7 0%,#cde3cb 46%,#99c4bb 100%);color:#344f42}
+.habitat h1{color:inherit;text-shadow:none;filter:none}
+.habitat footer button{background:#315d4c;color:#fff7dc;box-shadow:0 5px 14px #29433533}
+.habitat-toolbar select{min-width:62px;border:1px solid #becab0;border-radius:20px;background:#fff9e4;color:#43533d;padding:6px 10px;font:inherit;font-size:.82rem}
+@media(max-width:600px){.habitat:not(.habitat-town) .habitat-toolbar{bottom:auto;top:134px;right:12px}.habitat-town .habitat-toolbar{max-width:66%}}
+.habitat .habitat-season{display:inline-flex;align-items:center;gap:6px;pointer-events:auto;background:#fff8e4ed;border-radius:16px;color:#40543f;padding:3px 7px 3px 10px;font-size:.8rem;font-weight:700}
+.habitat-season select{border:0;background:transparent;color:inherit;font:inherit;padding:4px;cursor:pointer}
+.habitat[data-season="spring"]{background:radial-gradient(ellipse at 50% 46%,#fff4df,#e6e8d4 50%,#bad6cd)}
+.habitat[data-season="autumn"]{background:radial-gradient(ellipse at 50% 46%,#fff2cf,#e8d9c4 55%,#cbbca6)}
+.habitat[data-season="winter"]{background:radial-gradient(ellipse at 50% 46%,#f4fafb,#dceaf0 55%,#abc5d2)}
