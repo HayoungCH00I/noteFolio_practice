@@ -14,6 +14,7 @@ function developmentHttps() {
 }
 
 export default defineConfig(({ command, isPreview }) => ({
+  base: process.env.GITHUB_PAGES === 'true' ? '/noteFolio_practice/' : '/',
   worker: { format: 'es' },
   server: {
     host: isPreview ? undefined : '0.0.0.0',

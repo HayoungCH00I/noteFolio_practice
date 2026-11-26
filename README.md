@@ -31,6 +31,29 @@ npm run build
 
 인증서·비밀키와 접속자용 ZIP이 들어 있는 `.certs/`, 설치된 패키지 `node_modules/`, 빌드 결과 `dist/`는 Git에 포함하지 않습니다. 새로 받은 프로젝트에서는 자신의 개발 인증서를 생성해야 합니다.
 
+## GitHub Pages 배포
+
+배포 주소는 https://hayoungch00i.github.io/noteFolio_practice/ 입니다. 첫 배포가 성공한 뒤 접속할 수 있습니다.
+
+1. GitHub 저장소의 **Settings → Pages → Build and deployment → Source**를 **GitHub Actions**로 선택합니다. GitHub Free 계정에서는 저장소를 Public으로 설정해야 합니다.
+2. 이 설정 파일들을 포함한 변경 사항을 GitHub Desktop에서 Commit한 뒤 **Push origin**으로 `main`에 올립니다.
+3. GitHub의 **Actions → Deploy to GitHub Pages**에서 `build`와 `deploy`가 모두 성공했는지 확인합니다. 이후 `main`에 올릴 때마다 자동으로 다시 배포됩니다.
+4. **Settings → Pages → Visit site**에서 실제 배포 주소를 확인합니다. 이미 파일을 올린 뒤 Pages를 설정했다면 **Actions → Deploy to GitHub Pages → Run workflow**에서 `main`을 선택해 실행합니다.
+
+`.github/workflows/deploy-pages.yml`이 Node.js 24에서 `npm ci`와 `npm run build`를 실행하고 `dist/`만 배포합니다. 별도 토큰이나 개발용 인증서를 등록할 필요는 없습니다.
+
+자동 배포는 `GITHUB_PAGES=true` 환경 변수로 `vite.config.mjs`의 `base`를 `/noteFolio_practice/`로 지정합니다. 이미지·글꼴·작업용 스레드·카메라 모델·음악은 이 배포 경로를 따릅니다. 일반 로컬 개발·빌드·회사 서버는 기존 `/` 경로를 유지합니다. 저장소 이름을 바꾸거나 별도 도메인을 연결하면 Pages용 `base`도 해당 주소에 맞게 변경해야 합니다. 화면 이동은 `#` 주소를 사용하므로 개별 화면을 새로고침해도 같은 사이트로 열립니다.
+
+```sh
+GITHUB_PAGES=true npm run build
+GITHUB_PAGES=true npm run preview -- --host 127.0.0.1
+# http://127.0.0.1:4173/noteFolio_practice/
+```
+
+GitHub Pages는 HTML·이미지 같은 파일을 제공하는 서비스입니다. **회사 멀티플레이는 별도 WebSocket 서버가 필요해 Pages에서 접속할 수 없습니다.** 이 기능은 기존 `npm run company` 서버를 사용합니다. 카메라 기능은 Pages의 HTTPS 주소에서 브라우저의 카메라 권한을 허용해야 사용할 수 있습니다.
+
+공식 안내: [Vite의 GitHub Pages 배포](https://vite.dev/guide/static-deploy.html#github-pages), [GitHub Pages 게시 방식 설정](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
+
 ## 관련 문서
 
 - [주차와 작업 기준](PROJECT_NOTES.md)
